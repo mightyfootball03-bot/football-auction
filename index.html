@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BidXI Rivals</title>
-<link rel="stylesheet" href="css/style.css">
 
 <style>
 * {
@@ -20,104 +19,152 @@ body {
 }
 
 .container {
-    max-width: 700px;
-    margin: 60px auto;
+    max-width: 750px;
+    margin: 35px auto;
     padding: 20px;
 }
 
 h1 {
-    font-size: 42px;
     color: #00e676;
+    font-size: 42px;
 }
 
 h2 {
-    margin-bottom: 25px;
+    color: white;
+}
+
+.panel {
+    background: #1d2935;
+    padding: 24px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+
+.hidden {
+    display: none !important;
 }
 
 button {
     display: block;
     width: 100%;
-    max-width: 320px;
-    margin: 15px auto;
-    padding: 15px;
+    max-width: 330px;
+    padding: 14px;
+    margin: 12px auto;
+    background: #00c853;
     border: none;
     border-radius: 8px;
-    background: #00c853;
     color: white;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
 }
 
 button:hover {
-    background: #009624;
+    filter: brightness(1.12);
 }
 
 .secondary {
     background: #34495e;
 }
 
-.secondary:hover {
-    background: #45627c;
+.accept {
+    background: #00c853;
 }
 
-.panel {
-    background: #1d2935;
-    padding: 25px;
-    border-radius: 12px;
-    margin-top: 20px;
+.decline {
+    background: #e53935;
 }
 
-.hidden {
-    display: none;
-}
-
-label {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 8px;
-}
-
-select, input {
+input, select {
     width: 100%;
-    max-width: 320px;
+    max-width: 330px;
     padding: 12px;
-    border-radius: 6px;
+    margin: 8px auto;
+    border-radius: 7px;
     border: none;
     font-size: 16px;
 }
 
+label {
+    display: block;
+    margin-top: 16px;
+}
+
 .players {
     display: flex;
-    justify-content: space-around;
-    gap: 10px;
-    margin: 25px 0;
+    gap: 12px;
+    margin: 20px 0;
 }
 
 .player {
-    background: #263746;
-    padding: 20px 10px;
-    border-radius: 8px;
     flex: 1;
-}
-
-#chatMessages {
-    background: #101820;
-    height: 150px;
-    overflow-y: auto;
-    text-align: left;
-    padding: 10px;
-    margin: 15px 0;
-    border-radius: 6px;
+    min-width: 0;
+    padding: 16px 8px;
+    background: #263746;
+    border-radius: 10px;
     overflow-wrap: anywhere;
 }
 
-#chatMessages p {
-    margin: 6px 0;
+.player strong {
+    color: #00e676;
 }
 
-small {
+#chatMessages {
+    height: 220px;
+    overflow-y: auto;
+    background: #101820;
+    padding: 12px;
+    text-align: left;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+.message {
+    padding: 8px;
+    margin: 6px 0;
+    background: #263746;
+    border-radius: 6px;
+}
+
+.message strong {
+    color: #00e676;
+}
+
+.request {
+    background: #263746;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.status {
     color: #aebbc5;
+}
+
+.error {
+    color: #ff7777;
+}
+
+.success {
+    color: #00e676;
+}
+
+#inviteLink {
+    font-size: 13px;
+}
+
+@media(max-width: 480px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    .container {
+        padding: 12px;
+    }
+
+    .players {
+        gap: 6px;
+    }
 }
 </style>
 </head>
@@ -126,109 +173,159 @@ small {
 
 <div class="container">
 
-    <div id="home">
-        <h1>BidXI Rivals</h1>
-        <p>Build your dream team. Win the auction.</p>
+<section id="home">
 
-        <button onclick="showPage('gameMenu')">
-            Play Game
+    <h1>BidXI Rivals</h1>
+
+    <p>Build your dream team. Win the auction.</p>
+
+    <div class="panel">
+
+        <h3>Your Player Name</h3>
+
+        <input
+            id="playerName"
+            maxlength="20"
+            placeholder="Enter your name"
+        >
+
+        <button onclick="saveName()">
+            Save Name
         </button>
+
+        <p id="savedName" class="status"></p>
+
     </div>
 
-    <div id="gameMenu" class="hidden">
-        <h1>BidXI Rivals</h1>
-        <h2>Choose Game Mode</h2>
+    <button onclick="openMenu()">
+        Play Game
+    </button>
 
-        <button onclick="openSettings('match')">
-            Find Match
+</section>
+
+
+<section id="gameMenu" class="hidden">
+
+    <h1>BidXI Rivals</h1>
+
+    <h2>Choose Game Mode</h2>
+
+    <button onclick="openSettings('friends')">
+        Play with Friends
+    </button>
+
+    <button onclick="openSettings('match')">
+        Find Match
+    </button>
+
+    <button class="secondary" onclick="showPage('home')">
+        Back
+    </button>
+
+</section>
+
+
+<section id="settings" class="hidden">
+
+    <h2>Game Settings</h2>
+
+    <div class="panel">
+
+        <label>Starting Budget</label>
+
+        <select id="budget">
+            <option value="1000000">€1,000,000</option>
+            <option value="2000000">€2,000,000</option>
+            <option value="3000000">€3,000,000</option>
+            <option value="4000000">€4,000,000</option>
+            <option value="5000000" selected>€5,000,000</option>
+            <option value="6000000">€6,000,000</option>
+            <option value="7000000">€7,000,000</option>
+            <option value="8000000">€8,000,000</option>
+            <option value="9000000">€9,000,000</option>
+            <option value="10000000">€10,000,000</option>
+        </select>
+
+        <label>Bid Timer</label>
+
+        <select id="bidTimer">
+            <option value="10">10 seconds</option>
+            <option value="15" selected>15 seconds</option>
+            <option value="20">20 seconds</option>
+        </select>
+
+        <label>Simulation Type</label>
+
+        <select id="simulation">
+            <option value="fast">Fast Simulation</option>
+            <option value="normal">Normal Simulation</option>
+        </select>
+
+        <button onclick="startGameMode()">
+            Continue
         </button>
 
-        <button onclick="openSettings('friends')">
-            Play with Friends
-        </button>
-
-        <button class="secondary" onclick="showPage('home')">
+        <button class="secondary" onclick="showPage('gameMenu')">
             Back
         </button>
+
     </div>
 
-    <div id="settings" class="hidden">
-        <h2>Game Settings</h2>
+</section>
 
-        <div class="panel">
 
-            <label>Starting Budget</label>
-            <select id="budget">
-                <option value="1000000">€1,000,000</option>
-                <option value="2000000">€2,000,000</option>
-                <option value="3000000">€3,000,000</option>
-                <option value="4000000">€4,000,000</option>
-                <option value="5000000">€5,000,000</option>
-                <option value="6000000">€6,000,000</option>
-                <option value="7000000">€7,000,000</option>
-                <option value="8000000">€8,000,000</option>
-                <option value="9000000">€9,000,000</option>
-                <option value="10000000">€10,000,000</option>
-            </select>
+<section id="matchmaking" class="hidden">
 
-            <label>Bid Timer</label>
-            <select id="bidTimer">
-                <option value="10">10 seconds</option>
-                <option value="15" selected>15 seconds</option>
-                <option value="20">20 seconds</option>
-            </select>
+    <h2>Find Match</h2>
 
-            <label>Simulation Type</label>
-            <select id="simulation">
-                <option value="fast">Fast Simulation</option>
-                <option value="normal">Normal Simulation</option>
-            </select>
+    <div class="panel">
 
-            <button onclick="startGameMode()">
-                Continue
-            </button>
+        <h3>Random Matchmaking</h3>
 
-            <button class="secondary" onclick="showPage('gameMenu')">
-                Back
-            </button>
+        <p>Coming soon!</p>
 
-        </div>
+        <p class="status">
+            Random matchmaking will be added
+            after the private multiplayer system.
+        </p>
+
+        <button class="secondary" onclick="showPage('gameMenu')">
+            Back
+        </button>
+
     </div>
 
-    <div id="matchmaking" class="hidden">
-        <h2>Find Match</h2>
+</section>
 
-        <div class="panel">
-            <h3>Searching for opponent...</h3>
-            <p>Waiting for another player.</p>
-            <small>Online matchmaking coming soon.</small>
 
-            <button class="secondary" onclick="showPage('gameMenu')">
-                Cancel
-            </button>
-        </div>
-    </div>
+<section id="lobby" class="hidden">
 
-    <div id="lobby" class="hidden">
-        <h2>Private Lobby</h2>
+    <h1>Private Lobby</h1>
 
-        <div class="panel">
+    <div class="panel">
 
-            <h3>Players: <span id="playerCount">1/2</span></h3>
+        <h3>
+            Players:
+            <span id="playerCount">1/2</span>
+        </h3>
 
-            <div class="players">
-                <div class="player">
-                    <strong>You</strong>
-                    <p>Ready</p>
-                    <p id="yourBudget"></p>
-                </div>
+        <div class="players">
 
-                <div class="player">
-                    <strong>Waiting...</strong>
-                    <p>Not connected</p>
-                    <p>€0</p>
-                </div>
+            <div class="player">
+                <strong id="hostName">Host</strong>
+                <p id="hostStatus">Connected</p>
+                <p id="hostBudget"></p>
             </div>
+
+            <div class="player">
+                <strong id="guestName">Waiting...</strong>
+                <p id="guestStatus">Not connected</p>
+                <p id="guestBudget"></p>
+            </div>
+
+        </div>
+
+        <div id="inviteArea">
 
             <h3>Invite Friend</h3>
 
@@ -238,135 +335,76 @@ small {
                 Copy Invite Link
             </button>
 
-            <h3>Lobby Chat</h3>
+        </div>
 
-            <div id="chatMessages"></div>
+        <div id="requestsArea" class="hidden">
 
-            <input
-                id="chatInput"
-                placeholder="Type your message..."
-                maxlength="250"
-            >
+            <h3>Join Requests</h3>
 
-            <button onclick="sendMessage()">
-                Send
-            </button>
-
-            <p id="lobbyStatus">
-                Waiting for your friend...
-            </p>
-
-            <button class="secondary" onclick="showPage('gameMenu')">
-                Leave Lobby
-            </button>
+            <div id="requestsList"></div>
 
         </div>
+
+        <p id="lobbyStatus" class="status">
+            Waiting...
+        </p>
+
     </div>
+
+
+    <div class="panel">
+
+        <h3>Lobby Chat</h3>
+
+        <div id="chatMessages"></div>
+
+        <input
+            id="chatInput"
+            maxlength="250"
+            placeholder="Type your message..."
+        >
+
+        <button onclick="sendMessage()">
+            Send Message
+        </button>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h3>Game Settings</h3>
+
+        <p id="displayBudget"></p>
+        <p id="displayTimer"></p>
+        <p id="displaySimulation"></p>
+
+        <button id="readyButton"
+                onclick="toggleReady()"
+                disabled>
+            Ready
+        </button>
+
+        <p id="readyStatus" class="status">
+            Waiting for both players...
+        </p>
+
+        <button class="secondary" onclick="leaveLobby()">
+            Leave Lobby
+        </button>
+
+    </div>
+
+</section>
 
 </div>
 
-<script>
 
-let selectedMode = "";
-let gameSettings = {};
+<script type="module">
 
-function showPage(pageId) {
-    const pages = [
-        "home",
-        "gameMenu",
-        "settings",
-        "matchmaking",
-        "lobby"
-    ];
-
-    pages.forEach(page => {
-        document.getElementById(page).classList.add("hidden");
-    });
-
-    document.getElementById(pageId).classList.remove("hidden");
-}
-
-function openSettings(mode) {
-    selectedMode = mode;
-    showPage("settings");
-}
-
-function startGameMode() {
-
-    gameSettings = {
-        budget: Number(document.getElementById("budget").value),
-        bidTimer: Number(document.getElementById("bidTimer").value),
-        simulation: document.getElementById("simulation").value
-    };
-
-    if (selectedMode === "match") {
-        showPage("matchmaking");
-    }
-
-    if (selectedMode === "friends") {
-        createLobby();
-    }
-}
-
-function createLobby() {
-
-    showPage("lobby");
-
-    document.getElementById("yourBudget").textContent =
-        "€" + gameSettings.budget.toLocaleString("en-US");
-
-    const roomId = Math.random().toString(36).substring(2, 10);
-
-    const inviteURL =
-        window.location.origin +
-        window.location.pathname +
-        "?room=" + roomId;
-
-    document.getElementById("inviteLink").value = inviteURL;
-
-    document.getElementById("chatMessages").innerHTML = "";
-
-    document.getElementById("playerCount").textContent = "1/2";
-}
-
-function copyInvite() {
-
-    const link = document.getElementById("inviteLink");
-
-    navigator.clipboard.writeText(link.value)
-        .then(() => alert("Invite link copied!"))
-        .catch(() => {
-            link.select();
-            alert("Copy the selected invite link.");
-        });
-}
-
-function sendMessage() {
-
-    const input = document.getElementById("chatInput");
-    const message = input.value.trim();
-
-    if (!message) return;
-
-    const chat = document.getElementById("chatMessages");
-
-    const paragraph = document.createElement("p");
-    paragraph.textContent = "You: " + message;
-
-    chat.appendChild(paragraph);
-
-    input.value = "";
-    chat.scrollTop = chat.scrollHeight;
-}
-
-document.getElementById("chatInput").addEventListener("keydown", function(event) {
-    if (event.key === "Enter") {
-        sendMessage();
-    }
-});
-
-</script><script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
 
 import {
     getAuth,
@@ -375,8 +413,19 @@ import {
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 
 import {
-    getFirestore
+    getFirestore,
+    collection,
+    doc,
+    getDoc,
+    setDoc,
+    addDoc,
+    updateDoc,
+    onSnapshot,
+    query,
+    orderBy,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDzaUespQaVfwbNRRETf_5-2NT9K7tsV6I",
@@ -388,29 +437,644 @@ const firebaseConfig = {
     measurementId: "G-7SWDPTE09Z"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
-const db = getFirestore(firebaseApp);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-signInAnonymously(auth)
-    .then(() => {
-        console.log("Firebase anonymous sign-in successful.");
-    })
-    .catch((error) => {
-        console.error("Firebase sign-in error:", error);
-    });
+let currentUser = null;
+let currentRoom = null;
+let roomData = null;
+let selectedMode = "";
+let gameSettings = {};
+let unsubscribeRoom = null;
+let unsubscribeRequests = null;
+let unsubscribeChat = null;
+let unsubscribeOwnRequest = null;
 
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        console.log("Player authenticated:", user.uid);
+const $ = id => document.getElementById(id);
+
+const money = value =>
+    "€" + Number(value || 0).toLocaleString("en-US");
+
+function playerName() {
+    return localStorage.getItem("bidxi_name") || "";
+}
+
+function validName() {
+    const name = playerName();
+
+    if (!name) {
+        alert("Please save your player name first.");
+        showPage("home");
+        return false;
+    }
+
+    return true;
+}
+
+function showPage(id) {
+    document.querySelectorAll(".container > section")
+        .forEach(section => section.classList.add("hidden"));
+
+    $(id).classList.remove("hidden");
+}
+
+function saveName() {
+    const name = $("playerName").value.trim();
+
+    if (name.length < 2 || name.length > 20) {
+        alert("Name must be between 2 and 20 characters.");
+        return;
+    }
+
+    localStorage.setItem("bidxi_name", name);
+
+    $("savedName").textContent = "Saved: " + name;
+    $("savedName").className = "success";
+}
+
+function openMenu() {
+    if (!validName()) return;
+    showPage("gameMenu");
+}
+
+function openSettings(mode) {
+    if (!validName()) return;
+
+    selectedMode = mode;
+    showPage("settings");
+}
+
+async function startGameMode() {
+    if (!currentUser) {
+        alert("Connecting to Firebase. Please wait.");
+        return;
+    }
+
+    gameSettings = {
+        budget: Number($("budget").value),
+        bidTimer: Number($("bidTimer").value),
+        simulation: $("simulation").value
+    };
+
+    if (selectedMode === "match") {
+        showPage("matchmaking");
+        return;
+    }
+
+    if (selectedMode === "friends") {
+        await createLobby();
+    }
+}
+
+function clearListeners() {
+    if (unsubscribeRoom) unsubscribeRoom();
+    if (unsubscribeRequests) unsubscribeRequests();
+    if (unsubscribeChat) unsubscribeChat();
+    if (unsubscribeOwnRequest) unsubscribeOwnRequest();
+
+    unsubscribeRoom = null;
+    unsubscribeRequests = null;
+    unsubscribeChat = null;
+    unsubscribeOwnRequest = null;
+}
+
+function resetLobbyView() {
+    $("chatMessages").innerHTML = "";
+    $("requestsList").innerHTML = "";
+    $("readyButton").disabled = true;
+    $("readyButton").textContent = "Ready";
+    $("readyStatus").textContent = "Waiting for both players...";
+}
+
+async function createLobby() {
+    try {
+        clearListeners();
+
+        const roomRef = doc(collection(db, "lobbies"));
+
+        currentRoom = roomRef.id;
+
+        await setDoc(roomRef, {
+            hostUid: currentUser.uid,
+            hostName: playerName(),
+            guestUid: null,
+            guestName: null,
+            hostReady: false,
+            guestReady: false,
+            status: "waiting",
+            budget: gameSettings.budget,
+            bidTimer: gameSettings.bidTimer,
+            simulation: gameSettings.simulation,
+            createdAt: serverTimestamp()
+        });
+
+        const inviteURL =
+            window.location.origin +
+            window.location.pathname +
+            "?room=" + encodeURIComponent(currentRoom);
+
+        $("inviteLink").value = inviteURL;
+        $("inviteArea").classList.remove("hidden");
+        $("requestsArea").classList.remove("hidden");
+
+        resetLobbyView();
+        showPage("lobby");
+
+        listenToRoom();
+        listenToRequests();
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not create lobby: " + error.message);
+    }
+}
+
+async function joinLobby(roomId) {
+    try {
+        if (!validName()) return;
+
+        clearListeners();
+
+        currentRoom = roomId;
+
+        const roomRef = doc(db, "lobbies", roomId);
+        const roomSnap = await getDoc(roomRef);
+
+        if (!roomSnap.exists()) {
+            alert("Lobby not found.");
+            return;
+        }
+
+        const room = roomSnap.data();
+
+        if (room.hostUid === currentUser.uid ||
+            room.guestUid === currentUser.uid) {
+
+            $("inviteArea").classList.add("hidden");
+            $("requestsArea").classList.add("hidden");
+
+            resetLobbyView();
+            showPage("lobby");
+
+            listenToRoom();
+
+            if (room.hostUid === currentUser.uid) {
+                $("inviteArea").classList.remove("hidden");
+                $("requestsArea").classList.remove("hidden");
+
+                $("inviteLink").value = window.location.href;
+                listenToRequests();
+            }
+
+            return;
+        }
+
+        if (room.guestUid) {
+            alert("This lobby is full.");
+            return;
+        }
+
+        const requestRef = doc(
+            db,
+            "lobbies",
+            roomId,
+            "requests",
+            currentUser.uid
+        );
+
+        await setDoc(requestRef, {
+            uid: currentUser.uid,
+            name: playerName(),
+            status: "pending",
+            createdAt: serverTimestamp()
+        });
+
+        $("inviteArea").classList.add("hidden");
+        $("requestsArea").classList.add("hidden");
+
+        resetLobbyView();
+        showPage("lobby");
+
+        $("lobbyStatus").textContent =
+            "Join request sent. Waiting for host approval...";
+
+        unsubscribeOwnRequest = onSnapshot(
+            requestRef,
+            snapshot => {
+                if (!snapshot.exists()) return;
+
+                const request = snapshot.data();
+
+                if (request.status === "accepted") {
+                    $("lobbyStatus").textContent =
+                        "Your request was accepted!";
+
+                    if (unsubscribeOwnRequest) {
+                        unsubscribeOwnRequest();
+                        unsubscribeOwnRequest = null;
+                    }
+
+                    listenToRoom();
+                }
+
+                if (request.status === "declined") {
+                    $("lobbyStatus").textContent =
+                        "Your request was declined.";
+                }
+            },
+            error => console.error(error)
+        );
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not join lobby: " + error.message);
+    }
+}
+
+function listenToRoom() {
+    if (unsubscribeRoom) unsubscribeRoom();
+
+    const roomRef = doc(db, "lobbies", currentRoom);
+
+    unsubscribeRoom = onSnapshot(
+        roomRef,
+        snapshot => {
+            if (!snapshot.exists()) {
+                $("lobbyStatus").textContent = "Lobby closed.";
+                return;
+            }
+
+            roomData = snapshot.data();
+
+            const isHost = roomData.hostUid === currentUser.uid;
+            const isGuest = roomData.guestUid === currentUser.uid;
+
+            if (!isHost && !isGuest) {
+                $("lobbyStatus").textContent =
+                    "You are not a member of this lobby.";
+                return;
+            }
+
+            $("hostName").textContent = roomData.hostName;
+            $("hostStatus").textContent = "Connected";
+            $("hostBudget").textContent = money(roomData.budget);
+
+            $("guestName").textContent =
+                roomData.guestName || "Waiting...";
+
+            $("guestStatus").textContent =
+                roomData.guestUid ? "Connected" : "Not connected";
+
+            $("guestBudget").textContent =
+                roomData.guestUid ? money(roomData.budget) : "";
+
+            $("playerCount").textContent =
+                roomData.guestUid ? "2/2" : "1/2";
+
+            $("displayBudget").textContent =
+                "Starting Budget: " + money(roomData.budget);
+
+            $("displayTimer").textContent =
+                "Bid Timer: " + roomData.bidTimer + " seconds";
+
+            $("displaySimulation").textContent =
+                "Simulation: " +
+                (roomData.simulation === "fast"
+                    ? "Fast Simulation"
+                    : "Normal Simulation");
+
+            $("readyButton").disabled = !roomData.guestUid;
+
+            const myReady = isHost
+                ? roomData.hostReady
+                : roomData.guestReady;
+
+            $("readyButton").textContent =
+                myReady ? "Cancel Ready" : "Ready";
+
+            if (!roomData.guestUid) {
+                $("lobbyStatus").textContent =
+                    "Waiting for your friend...";
+            } else {
+                $("lobbyStatus").textContent =
+                    "Both players connected!";
+            }
+
+            if (roomData.hostReady && roomData.guestReady) {
+                $("readyStatus").textContent =
+                    "Both players are ready! Auction coming soon.";
+            } else {
+                $("readyStatus").textContent =
+                    "Waiting for both players to be ready...";
+            }
+
+            listenToChat();
+        },
+        error => {
+            console.error(error);
+            $("lobbyStatus").textContent =
+                "Lobby connection error: " + error.message;
+        }
+    );
+}
+
+function listenToRequests() {
+    if (unsubscribeRequests) unsubscribeRequests();
+
+    const requestsRef = collection(
+        db,
+        "lobbies",
+        currentRoom,
+        "requests"
+    );
+
+    unsubscribeRequests = onSnapshot(
+        requestsRef,
+        snapshot => {
+            $("requestsList").innerHTML = "";
+
+            snapshot.forEach(requestDoc => {
+                const request = requestDoc.data();
+
+                if (request.status !== "pending") return;
+
+                const wrapper = document.createElement("div");
+                wrapper.className = "request";
+
+                const title = document.createElement("p");
+                title.textContent =
+                    request.name + " wants to join your lobby.";
+
+                const acceptButton = document.createElement("button");
+                acceptButton.className = "accept";
+                acceptButton.textContent = "Accept";
+
+                acceptButton.onclick = () =>
+                    acceptRequest(requestDoc.id);
+
+                const declineButton = document.createElement("button");
+                declineButton.className = "decline";
+                declineButton.textContent = "Decline";
+
+                declineButton.onclick = () =>
+                    declineRequest(requestDoc.id);
+
+                wrapper.appendChild(title);
+                wrapper.appendChild(acceptButton);
+                wrapper.appendChild(declineButton);
+
+                $("requestsList").appendChild(wrapper);
+            });
+        },
+        error => console.error(error)
+    );
+}
+
+async function acceptRequest(uid) {
+    try {
+        const roomRef = doc(db, "lobbies", currentRoom);
+
+        const requestRef = doc(
+            db,
+            "lobbies",
+            currentRoom,
+            "requests",
+            uid
+        );
+
+        const roomSnap = await getDoc(roomRef);
+        const requestSnap = await getDoc(requestRef);
+
+        if (!roomSnap.exists() || !requestSnap.exists()) return;
+
+        if (roomSnap.data().hostUid !== currentUser.uid) return;
+
+        if (roomSnap.data().guestUid) {
+            alert("Lobby is already full.");
+            return;
+        }
+
+        if (requestSnap.data().status !== "pending") return;
+
+        await updateDoc(roomRef, {
+            guestUid: uid,
+            guestName: requestSnap.data().name,
+            status: "ready",
+            hostReady: false,
+            guestReady: false
+        });
+
+        await updateDoc(requestRef, {
+            status: "accepted"
+        });
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not accept player: " + error.message);
+    }
+}
+
+async function declineRequest(uid) {
+    try {
+        const requestRef = doc(
+            db,
+            "lobbies",
+            currentRoom,
+            "requests",
+            uid
+        );
+
+        await updateDoc(requestRef, {
+            status: "declined"
+        });
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not decline request: " + error.message);
+    }
+}
+
+function listenToChat() {
+    if (unsubscribeChat) return;
+
+    const messagesRef = collection(
+        db,
+        "lobbies",
+        currentRoom,
+        "messages"
+    );
+
+    const messagesQuery = query(
+        messagesRef,
+        orderBy("createdAt", "asc")
+    );
+
+    unsubscribeChat = onSnapshot(
+        messagesQuery,
+        snapshot => {
+            const chat = $("chatMessages");
+            chat.innerHTML = "";
+
+            snapshot.forEach(messageDoc => {
+                const message = messageDoc.data();
+
+                const div = document.createElement("div");
+                div.className = "message";
+
+                const name = document.createElement("strong");
+                name.textContent = message.name + ": ";
+
+                const text = document.createElement("span");
+                text.textContent = message.text;
+
+                div.appendChild(name);
+                div.appendChild(text);
+                chat.appendChild(div);
+            });
+
+            chat.scrollTop = chat.scrollHeight;
+        },
+        error => console.error(error)
+    );
+}
+
+async function sendMessage() {
+    if (!currentUser || !currentRoom || !roomData) return;
+
+    const isMember =
+        roomData.hostUid === currentUser.uid ||
+        roomData.guestUid === currentUser.uid;
+
+    if (!isMember) {
+        alert("You must be accepted into the lobby first.");
+        return;
+    }
+
+    const input = $("chatInput");
+    const message = input.value.trim();
+
+    if (!message || message.length > 250) return;
+
+    try {
+        await addDoc(
+            collection(db, "lobbies", currentRoom, "messages"),
+            {
+                uid: currentUser.uid,
+                name: playerName(),
+                text: message,
+                createdAt: serverTimestamp()
+            }
+        );
+
+        input.value = "";
+
+    } catch (error) {
+        console.error(error);
+        alert("Message could not be sent: " + error.message);
+    }
+}
+
+async function toggleReady() {
+    if (!roomData || !roomData.guestUid) return;
+
+    const isHost = roomData.hostUid === currentUser.uid;
+    const isGuest = roomData.guestUid === currentUser.uid;
+
+    if (!isHost && !isGuest) return;
+
+    try {
+        const field = isHost ? "hostReady" : "guestReady";
+        const currentValue = isHost
+            ? roomData.hostReady
+            : roomData.guestReady;
+
+        await updateDoc(
+            doc(db, "lobbies", currentRoom),
+            {
+                [field]: !currentValue
+            }
+        );
+
+    } catch (error) {
+        console.error(error);
+        alert("Could not change ready status.");
+    }
+}
+
+async function copyInvite() {
+    try {
+        await navigator.clipboard.writeText(
+            $("inviteLink").value
+        );
+
+        alert("Invite link copied!");
+
+    } catch (error) {
+        $("inviteLink").select();
+        alert("Copy the selected invite link.");
+    }
+}
+
+function leaveLobby() {
+    clearListeners();
+
+    currentRoom = null;
+    roomData = null;
+
+    history.replaceState(
+        {},
+        "",
+        window.location.pathname
+    );
+
+    showPage("gameMenu");
+}
+
+$("chatInput").addEventListener("keydown", event => {
+    if (event.key === "Enter") {
+        sendMessage();
     }
 });
 
-window.bidXIFirebase = {
-    app: firebaseApp,
-    auth: auth,
-    db: db
-};
+window.saveName = saveName;
+window.openMenu = openMenu;
+window.showPage = showPage;
+window.openSettings = openSettings;
+window.startGameMode = startGameMode;
+window.copyInvite = copyInvite;
+window.sendMessage = sendMessage;
+window.toggleReady = toggleReady;
+window.leaveLobby = leaveLobby;
+
+$("playerName").value = playerName();
+
+if (playerName()) {
+    $("savedName").textContent =
+        "Saved: " + playerName();
+}
+
+onAuthStateChanged(auth, async user => {
+    if (user) {
+        currentUser = user;
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const roomId = params.get("room");
+
+        if (roomId) {
+            await joinLobby(roomId);
+        }
+    }
+});
+
+signInAnonymously(auth).catch(error => {
+    console.error(error);
+    alert("Firebase login failed: " + error.message);
+});
+
 </script>
 
 </body>
