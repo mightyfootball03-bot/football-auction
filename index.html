@@ -1077,5 +1077,525 @@ signInAnonymously(auth).catch(error => {
 
 </script>
 
+    <style>
+#aiGame {
+    max-width: 750px;
+    margin: 25px auto;
+    padding: 20px;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+#aiGame .ai-panel {
+    background: #1d2935;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 12px;
+}
+#aiGame .ai-player {
+    color: #00e676;
+    font-size: 25px;
+    font-weight: bold;
+}
+#aiGame .ai-budgets {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+#aiGame .ai-budgets div {
+    flex: 1;
+    background: #263746;
+    border-radius: 8px;
+    padding: 12px;
+}
+#aiGame button {
+    background: #00c853;
+}
+#aiGame button:disabled {
+    opacity: .4;
+    cursor: not-allowed;
+}
+#aiGame .ai-secondary {
+    background: #34495e;
+}
+#aiGame .ai-history {
+    text-align: left;
+    max-height: 170px;
+    overflow-y: auto;
+    overflow-wrap: anywhere;
+}
+#aiGame .ai-roster {
+    text-align: left;
+}
+</style>
+
+<section id="aiGame" class="hidden">
+    <h1>BidXI Rivals</h1>
+    <h2>Play vs AI</h2>
+
+    <div id="aiSetup" class="ai-panel">
+        <h3>Game Settings</h3>
+
+        <label>Starting Budget</label>
+        <select id="aiBudget">
+            <option value="1000000">€1,000,000</option>
+            <option value="2000000">€2,000,000</option>
+            <option value="3000000">€3,000,000</option>
+            <option value="4000000">€4,000,000</option>
+            <option value="5000000" selected>€5,000,000</option>
+            <option value="6000000">€6,000,000</option>
+            <option value="7000000">€7,000,000</option>
+            <option value="8000000">€8,000,000</option>
+            <option value="9000000">€9,000,000</option>
+            <option value="10000000">€10,000,000</option>
+        </select>
+
+        <label>Bid Timer</label>
+        <select id="aiTimer">
+            <option value="10">10 seconds</option>
+            <option value="15" selected>15 seconds</option>
+            <option value="20">20 seconds</option>
+        </select>
+
+        <label>Simulation Type</label>
+        <select id="aiSimulation">
+            <option value="fast">Fast Simulation</option>
+            <option value="normal">Normal Simulation</option>
+        </select>
+
+        <label>AI Difficulty</label>
+        <select id="aiDifficulty">
+            <option value="normal">Normal</option>
+            <option value="hard">Hard</option>
+        </select>
+
+        <button onclick="startAIGame()">Start Auction</button>
+        <button class="ai-secondary" onclick="closeAIGame()">Back</button>
+    </div>
+
+    <div id="aiAuction" class="hidden">
+        <div class="ai-budgets">
+            <div>
+                <strong>You</strong>
+                <p id="aiYourMoney"></p>
+            </div>
+            <div>
+                <strong>AI</strong>
+                <p id="aiBotMoney"></p>
+            </div>
+        </div>
+
+        <div class="ai-panel">
+            <p id="aiRound"></p>
+            <h2 id="aiPlayerName" class="ai-player"></h2>
+            <p id="aiPlayerPosition"></p>
+            <p>Current bid: <strong id="aiCurrentBid"></strong></p>
+            <h2 id="aiCountdown">15</h2>
+            <p id="aiAuctionStatus"></p>
+
+            <button id="aiBidButton" onclick="placeAIBid()">Bid + €25,000</button>
+            <button id="aiPassButton" class="ai-secondary" onclick="passAIBid()">Pass</button>
+            <button id="aiNextButton" class="hidden" onclick="nextAIPlayer()">Next Player</button>
+        </div>
+
+        <div class="ai-panel">
+            <h3>Auction History</h3>
+            <div id="aiHistory" class="ai-history"></div>
+        </div>
+
+        <div class="ai-panel">
+            <h3>Your Squad</h3>
+            <div id="aiYourSquad" class="ai-roster"></div>
+            <h3>AI Squad</h3>
+            <div id="aiBotSquad" class="ai-roster"></div>
+        </div>
+
+        <button class="ai-secondary" onclick="closeAIGame()">Exit AI Game</button>
+    </div>
+
+    <div id="aiFinished" class="ai-panel hidden">
+        <h2>Auction Finished!</h2>
+        <p id="aiResult"></p>
+        <button onclick="openAIGame()">Play Again</button>
+        <button class="ai-secondary" onclick="closeAIGame()">Main Menu</button>
+    </div>
+</section>
+
+<script>
+(function () {
+    "use strict";
+
+    const players = [
+        {name:"Kylian Mbappé",pos:"ST",value:500000},
+        {name:"Erling Haaland",pos:"ST",value:500000},
+        {name:"Harry Kane",pos:"ST",value:420000},
+        {name:"Lautaro Martínez",pos:"ST",value:340000},
+        {name:"Alexander Isak",pos:"ST",value:340000},
+        {name:"Mohamed Salah",pos:"RW",value:380000},
+        {name:"Lamine Yamal",pos:"RW",value:450000},
+        {name:"Bukayo Saka",pos:"RW",value:370000},
+        {name:"Raphinha",pos:"RW",value:320000},
+        {name:"Vinícius Júnior",pos:"LW",value:450000},
+        {name:"Khvicha Kvaratskhelia",pos:"LW",value:350000},
+        {name:"Luis Díaz",pos:"LW",value:280000},
+        {name:"Jude Bellingham",pos:"CM",value:420000},
+        {name:"Pedri",pos:"CM",value:390000},
+        {name:"Federico Valverde",pos:"CM",value:370000},
+        {name:"Vitinha",pos:"CM",value:350000},
+        {name:"Florian Wirtz",pos:"CAM",value:390000},
+        {name:"Cole Palmer",pos:"CAM",value:350000},
+        {name:"Rodri",pos:"CDM",value:340000},
+        {name:"Declan Rice",pos:"CDM",value:330000},
+        {name:"Aurélien Tchouaméni",pos:"CDM/CB",value:300000},
+        {name:"Virgil van Dijk",pos:"CB",value:350000},
+        {name:"William Saliba",pos:"CB",value:350000},
+        {name:"Rúben Dias",pos:"CB",value:310000},
+        {name:"Ronald Araújo",pos:"CB/RB",value:300000},
+        {name:"Alessandro Bastoni",pos:"CB",value:340000},
+        {name:"Achraf Hakimi",pos:"RB",value:340000},
+        {name:"Trent Alexander-Arnold",pos:"RB",value:290000},
+        {name:"Nuno Mendes",pos:"LB",value:330000},
+        {name:"Theo Hernández",pos:"LB",value:290000},
+        {name:"Alisson Becker",pos:"GK",value:300000},
+        {name:"Gianluigi Donnarumma",pos:"GK",value:320000},
+        {name:"Thibaut Courtois",pos:"GK",value:300000}
+    ];
+
+    const $ = id => document.getElementById(id);
+    const money = n => "€" + n.toLocaleString("en-US");
+
+    let state = null;
+    let interval = null;
+    let botTimeout = null;
+
+    function shuffle(array) {
+        const copy = [...array];
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    }
+
+    function stopTimers() {
+        clearInterval(interval);
+        clearTimeout(botTimeout);
+        interval = null;
+        botTimeout = null;
+    }
+
+    function log(message) {
+        const p = document.createElement("p");
+        p.textContent = message;
+        $("aiHistory").prepend(p);
+    }
+
+    function updateDisplay() {
+        $("aiYourMoney").textContent = money(state.you);
+        $("aiBotMoney").textContent = money(state.bot);
+        $("aiCurrentBid").textContent = money(state.bid);
+        $("aiCountdown").textContent = state.time;
+
+        $("aiYourSquad").textContent =
+            state.yourSquad.length
+            ? state.yourSquad.map(p => p.name + " (" + p.pos + ")").join(", ")
+            : "No players yet.";
+
+        $("aiBotSquad").textContent =
+            state.botSquad.length
+            ? state.botSquad.map(p => p.name + " (" + p.pos + ")").join(", ")
+            : "No players yet.";
+
+        const canBid = state.active &&
+            state.lastBidder !== "you" &&
+            state.you >= state.bid + 25000;
+
+        $("aiBidButton").disabled = !canBid;
+        $("aiPassButton").disabled = !state.active;
+    }
+
+    function startTimer() {
+        clearInterval(interval);
+        state.time = state.timer;
+        updateDisplay();
+
+        interval = setInterval(() => {
+            if (!state || !state.active) {
+                stopTimers();
+                return;
+            }
+
+            state.time--;
+            $("aiCountdown").textContent = state.time;
+
+            if (state.time <= 0) {
+                finishRound();
+            }
+        }, 1000);
+    }
+
+    function scheduleBot() {
+        clearTimeout(botTimeout);
+
+        if (!state.active || state.lastBidder === "bot") return;
+
+        botTimeout = setTimeout(() => {
+            if (!state || !state.active ||
+                state.lastBidder === "bot") return;
+
+            const player = state.current;
+            const next = state.bid + 25000;
+            const hard = state.difficulty === "hard";
+
+            const multiplier = hard
+                ? 1.05 + Math.random() * 0.45
+                : 0.75 + Math.random() * 0.45;
+
+            const maxBid = Math.floor(
+                player.value * multiplier / 25000
+            ) * 25000;
+
+            const affordable = next <= state.bot;
+            const interested = next <= maxBid;
+
+            if (affordable && interested) {
+                state.bid = next;
+                state.lastBidder = "bot";
+                $("aiAuctionStatus").textContent = "AI placed a bid!";
+                log("AI bid " + money(next) + " for " + player.name);
+                startTimer();
+            } else {
+                $("aiAuctionStatus").textContent = "AI passed.";
+                log("AI passed on " + player.name);
+
+                if (state.lastBidder === "you") {
+                    finishRound();
+                } else {
+                    state.botPassed = true;
+                    updateDisplay();
+                }
+            }
+        }, 900 + Math.random() * 1200);
+    }
+
+    window.openAIGame = function () {
+        stopTimers();
+
+        document.querySelectorAll(".container > section")
+            .forEach(el => el.classList.add("hidden"));
+
+        $("aiGame").classList.remove("hidden");
+        $("aiSetup").classList.remove("hidden");
+        $("aiAuction").classList.add("hidden");
+        $("aiFinished").classList.add("hidden");
+    };
+
+    window.closeAIGame = function () {
+        stopTimers();
+        state = null;
+        $("aiGame").classList.add("hidden");
+
+        if (typeof window.showPage === "function") {
+            window.showPage("gameMenu");
+        } else {
+            $("gameMenu").classList.remove("hidden");
+        }
+    };
+
+    window.startAIGame = function () {
+        stopTimers();
+
+        const budget = Number($("aiBudget").value);
+
+        state = {
+            you: budget,
+            bot: budget,
+            timer: Number($("aiTimer").value),
+            simulation: $("aiSimulation").value,
+            difficulty: $("aiDifficulty").value,
+            deck: shuffle(players).slice(0, 20),
+            round: 0,
+            bid: 0,
+            time: 0,
+            current: null,
+            lastBidder: null,
+            botPassed: false,
+            active: false,
+            yourSquad: [],
+            botSquad: []
+        };
+
+        $("aiHistory").innerHTML = "";
+        $("aiSetup").classList.add("hidden");
+        $("aiAuction").classList.remove("hidden");
+        $("aiFinished").classList.add("hidden");
+
+        nextAIPlayer();
+    };
+
+    window.nextAIPlayer = function () {
+        if (!state) return;
+
+        stopTimers();
+
+        if (state.round >= state.deck.length) {
+            finishGame();
+            return;
+        }
+
+        state.current = state.deck[state.round];
+        state.round++;
+        state.bid = Math.max(
+            25000,
+            Math.floor(state.current.value * 0.45 / 25000) * 25000
+        );
+        state.lastBidder = null;
+        state.botPassed = false;
+        state.active = true;
+
+        $("aiRound").textContent =
+            "Player " + state.round + "/" + state.deck.length;
+        $("aiPlayerName").textContent = state.current.name;
+        $("aiPlayerPosition").textContent =
+            "Position: " + state.current.pos;
+        $("aiAuctionStatus").textContent =
+            "Place the first bid or pass.";
+        $("aiNextButton").classList.add("hidden");
+
+        updateDisplay();
+        startTimer();
+
+        if (state.round % 2 === 0) {
+            scheduleBot();
+        }
+    };
+
+    window.placeAIBid = function () {
+        if (!state || !state.active ||
+            state.lastBidder === "you") return;
+
+        const next = state.bid + 25000;
+
+        if (next > state.you) {
+            alert("Not enough money!");
+            return;
+        }
+
+        state.bid = next;
+        state.lastBidder = "you";
+        state.botPassed = false;
+
+        $("aiAuctionStatus").textContent = "You are winning!";
+        log("You bid " + money(next) + " for " + state.current.name);
+
+        startTimer();
+        scheduleBot();
+    };
+
+    window.passAIBid = function () {
+        if (!state || !state.active) return;
+
+        if (state.lastBidder === "bot") {
+            finishRound();
+        } else if (state.lastBidder === "you") {
+            $("aiAuctionStatus").textContent =
+                "You already have the highest bid.";
+        } else {
+            state.active = false;
+            stopTimers();
+            log("You passed on " + state.current.name);
+
+            $("aiAuctionStatus").textContent =
+                "You passed. No player awarded.";
+            $("aiBidButton").disabled = true;
+            $("aiPassButton").disabled = true;
+            $("aiNextButton").classList.remove("hidden");
+        }
+    };
+
+    function finishRound() {
+        if (!state || !state.active) return;
+
+        state.active = false;
+        stopTimers();
+
+        const player = state.current;
+
+        if (state.lastBidder === "you") {
+            state.you -= state.bid;
+            state.yourSquad.push(player);
+
+            log("You won " + player.name + " for " + money(state.bid));
+            $("aiAuctionStatus").textContent =
+                "You won " + player.name + "!";
+
+        } else if (state.lastBidder === "bot") {
+            state.bot -= state.bid;
+            state.botSquad.push(player);
+
+            log("AI won " + player.name + " for " + money(state.bid));
+            $("aiAuctionStatus").textContent =
+                "AI won " + player.name + "!";
+
+        } else {
+            log("Nobody bought " + player.name);
+            $("aiAuctionStatus").textContent =
+                "No bids. Player unsold.";
+        }
+
+        updateDisplay();
+
+        $("aiBidButton").disabled = true;
+        $("aiPassButton").disabled = true;
+        $("aiNextButton").classList.remove("hidden");
+    }
+
+    function finishGame() {
+        stopTimers();
+
+        $("aiAuction").classList.add("hidden");
+        $("aiFinished").classList.remove("hidden");
+
+        const yourTotal = state.yourSquad.reduce(
+            (sum, p) => sum + p.value, 0
+        );
+
+        const botTotal = state.botSquad.reduce(
+            (sum, p) => sum + p.value, 0
+        );
+
+        const result = yourTotal > botTotal
+            ? "You built the stronger squad!"
+            : yourTotal < botTotal
+            ? "AI built the stronger squad!"
+            : "The squads are equally strong!";
+
+        $("aiResult").textContent =
+            result +
+            " Your squad: " + state.yourSquad.length +
+            " players. AI squad: " + state.botSquad.length +
+            " players. Your remaining budget: " + money(state.you) +
+            ". AI remaining budget: " + money(state.bot) + ".";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const menu = $("gameMenu");
+
+        if (!menu) return;
+
+        const button = document.createElement("button");
+        button.textContent = "Play vs AI";
+        button.onclick = window.openAIGame;
+
+        const backButton = menu.querySelector("button.secondary");
+
+        if (backButton) {
+            menu.insertBefore(button, backButton);
+        } else {
+            menu.appendChild(button);
+        }
+    });
+})();
+</script>
 </body>
 </html>
