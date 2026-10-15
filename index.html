@@ -1,14 +1,371 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BidXI Rivals</title>
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BidXI Rivals</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #101820;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.container {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 42px;
+    color: #00e676;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 15px auto;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #00c853;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #009624;
+}
+
+.secondary {
+    background: #34495e;
+}
+
+.secondary:hover {
+    background: #45627c;
+}
+
+.panel {
+    background: #1d2935;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+select, input {
+    width: 100%;
+    max-width: 320px;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+}
+
+.players {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.player {
+    background: #263746;
+    padding: 20px 10px;
+    border-radius: 8px;
+    flex: 1;
+}
+
+#chatMessages {
+    background: #101820;
+    height: 150px;
+    overflow-y: auto;
+    text-align: left;
+    padding: 10px;
+    margin: 15px 0;
+    border-radius: 6px;
+    overflow-wrap: anywhere;
+}
+
+#chatMessages p {
+    margin: 6px 0;
+}
+
+small {
+    color: #aebbc5;
+}
+</style>
 </head>
+
 <body>
-    <h1>BidXI Rivals!</h1>
-    <p>Welcome to BidXI Rivals!</p>
-    <button onclick="alert('Welcome to BidXI Rivals!')">Play Game</button>
+
+<div class="container">
+
+    <div id="home">
+        <h1>BidXI Rivals</h1>
+        <p>Build your dream team. Win the auction.</p>
+
+        <button onclick="showPage('gameMenu')">
+            Play Game
+        </button>
+    </div>
+
+    <div id="gameMenu" class="hidden">
+        <h1>BidXI Rivals</h1>
+        <h2>Choose Game Mode</h2>
+
+        <button onclick="openSettings('match')">
+            Find Match
+        </button>
+
+        <button onclick="openSettings('friends')">
+            Play with Friends
+        </button>
+
+        <button class="secondary" onclick="showPage('home')">
+            Back
+        </button>
+    </div>
+
+    <div id="settings" class="hidden">
+        <h2>Game Settings</h2>
+
+        <div class="panel">
+
+            <label>Starting Budget</label>
+            <select id="budget">
+                <option value="1000000">€1,000,000</option>
+                <option value="2000000">€2,000,000</option>
+                <option value="3000000">€3,000,000</option>
+                <option value="4000000">€4,000,000</option>
+                <option value="5000000">€5,000,000</option>
+                <option value="6000000">€6,000,000</option>
+                <option value="7000000">€7,000,000</option>
+                <option value="8000000">€8,000,000</option>
+                <option value="9000000">€9,000,000</option>
+                <option value="10000000">€10,000,000</option>
+            </select>
+
+            <label>Bid Timer</label>
+            <select id="bidTimer">
+                <option value="10">10 seconds</option>
+                <option value="15" selected>15 seconds</option>
+                <option value="20">20 seconds</option>
+            </select>
+
+            <label>Simulation Type</label>
+            <select id="simulation">
+                <option value="fast">Fast Simulation</option>
+                <option value="normal">Normal Simulation</option>
+            </select>
+
+            <button onclick="startGameMode()">
+                Continue
+            </button>
+
+            <button class="secondary" onclick="showPage('gameMenu')">
+                Back
+            </button>
+
+        </div>
+    </div>
+
+    <div id="matchmaking" class="hidden">
+        <h2>Find Match</h2>
+
+        <div class="panel">
+            <h3>Searching for opponent...</h3>
+            <p>Waiting for another player.</p>
+            <small>Online matchmaking coming soon.</small>
+
+            <button class="secondary" onclick="showPage('gameMenu')">
+                Cancel
+            </button>
+        </div>
+    </div>
+
+    <div id="lobby" class="hidden">
+        <h2>Private Lobby</h2>
+
+        <div class="panel">
+
+            <h3>Players: <span id="playerCount">1/2</span></h3>
+
+            <div class="players">
+                <div class="player">
+                    <strong>You</strong>
+                    <p>Ready</p>
+                    <p id="yourBudget"></p>
+                </div>
+
+                <div class="player">
+                    <strong>Waiting...</strong>
+                    <p>Not connected</p>
+                    <p>€0</p>
+                </div>
+            </div>
+
+            <h3>Invite Friend</h3>
+
+            <input id="inviteLink" readonly>
+
+            <button onclick="copyInvite()">
+                Copy Invite Link
+            </button>
+
+            <h3>Lobby Chat</h3>
+
+            <div id="chatMessages"></div>
+
+            <input
+                id="chatInput"
+                placeholder="Type your message..."
+                maxlength="250"
+            >
+
+            <button onclick="sendMessage()">
+                Send
+            </button>
+
+            <p id="lobbyStatus">
+                Waiting for your friend...
+            </p>
+
+            <button class="secondary" onclick="showPage('gameMenu')">
+                Leave Lobby
+            </button>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+let selectedMode = "";
+let gameSettings = {};
+
+function showPage(pageId) {
+    const pages = [
+        "home",
+        "gameMenu",
+        "settings",
+        "matchmaking",
+        "lobby"
+    ];
+
+    pages.forEach(page => {
+        document.getElementById(page).classList.add("hidden");
+    });
+
+    document.getElementById(pageId).classList.remove("hidden");
+}
+
+function openSettings(mode) {
+    selectedMode = mode;
+    showPage("settings");
+}
+
+function startGameMode() {
+
+    gameSettings = {
+        budget: Number(document.getElementById("budget").value),
+        bidTimer: Number(document.getElementById("bidTimer").value),
+        simulation: document.getElementById("simulation").value
+    };
+
+    if (selectedMode === "match") {
+        showPage("matchmaking");
+    }
+
+    if (selectedMode === "friends") {
+        createLobby();
+    }
+}
+
+function createLobby() {
+
+    showPage("lobby");
+
+    document.getElementById("yourBudget").textContent =
+        "€" + gameSettings.budget.toLocaleString("en-US");
+
+    const roomId = Math.random().toString(36).substring(2, 10);
+
+    const inviteURL =
+        window.location.origin +
+        window.location.pathname +
+        "?room=" + roomId;
+
+    document.getElementById("inviteLink").value = inviteURL;
+
+    document.getElementById("chatMessages").innerHTML = "";
+
+    document.getElementById("playerCount").textContent = "1/2";
+}
+
+function copyInvite() {
+
+    const link = document.getElementById("inviteLink");
+
+    navigator.clipboard.writeText(link.value)
+        .then(() => alert("Invite link copied!"))
+        .catch(() => {
+            link.select();
+            alert("Copy the selected invite link.");
+        });
+}
+
+function sendMessage() {
+
+    const input = document.getElementById("chatInput");
+    const message = input.value.trim();
+
+    if (!message) return;
+
+    const chat = document.getElementById("chatMessages");
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = "You: " + message;
+
+    chat.appendChild(paragraph);
+
+    input.value = "";
+    chat.scrollTop = chat.scrollHeight;
+}
+
+document.getElementById("chatInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        sendMessage();
+    }
+});
+
+</script>
+
 </body>
 </html>
