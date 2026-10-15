@@ -365,6 +365,52 @@ document.getElementById("chatInput").addEventListener("keydown", function(event)
     }
 });
 
+</script><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+
+import {
+    getAuth,
+    signInAnonymously,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+
+import {
+    getFirestore
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDzaUespQaVfwbNRRETf_5-2NT9K7tsV6I",
+    authDomain: "bitxi-rivals-200c9.firebaseapp.com",
+    projectId: "bitxi-rivals-200c9",
+    storageBucket: "bitxi-rivals-200c9.firebasestorage.app",
+    messagingSenderId: "126672157148",
+    appId: "1:126672157148:web:69dfa091eec4ddf4aa7719",
+    measurementId: "G-7SWDPTE09Z"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+
+signInAnonymously(auth)
+    .then(() => {
+        console.log("Firebase anonymous sign-in successful.");
+    })
+    .catch((error) => {
+        console.error("Firebase sign-in error:", error);
+    });
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        console.log("Player authenticated:", user.uid);
+    }
+});
+
+window.bidXIFirebase = {
+    app: firebaseApp,
+    auth: auth,
+    db: db
+};
 </script>
 
 </body>
