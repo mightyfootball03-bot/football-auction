@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#07131c">
-<title>BidXI Rivals — Auction & Match</title>
+<meta name="theme-color" content="#040d11">
+<title>BidXI Rivals | Cinematic Edition</title>
 <style>
 :root{color-scheme:dark;--bg:#07131c;--panel:#142735;--panel2:#1d3543;--stroke:#365264;--text:#f0f7f4;--mint:#46e9a0;--muted:#acc4c6;--gold:#ffd67a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% -30%,#1b3640,var(--bg) 70%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,Arial,sans-serif;min-height:100vh}button,input,select{font:inherit}button{border:0;border-radius:10px;padding:11px 14px;background:#20d084;color:#082316;font-weight:750;cursor:pointer;transition:filter .15s}button:hover:not(:disabled){filter:brightness(1.1)}button:disabled{opacity:.4;cursor:not-allowed}.secondary{background:#344c5c;color:#f0f7f4}.danger{background:#ad4a4a;color:white}.outline{background:transparent;color:#bfe7d8;border:1px solid #537b74}input,select{background:#0f2633;color:white;border:1px solid #547080;border-radius:9px;padding:11px;width:100%}label{display:block;color:#c0d8d2;margin:12px 0 6px;font-weight:650}.hidden{display:none!important}.wrap{max-width:1340px;margin:0 auto;padding:18px}.screen{max-width:500px;text-align:center;margin:26px auto}.screen>button{width:100%;margin:8px 0}.panel{background:linear-gradient(145deg,#193141,var(--panel));border:1px solid var(--stroke);border-radius:16px;padding:17px;margin:12px 0;box-shadow:0 6px 30px #00000015}h1{font-weight:900;color:var(--mint);letter-spacing:-1px;margin:10px 0 12px}h2{font-size:23px;margin:10px 0}h3{margin:9px 0 13px}.muted,.small{color:var(--muted)}.small{font-size:12px;line-height:1.4}.warning{color:var(--gold)}.error{color:#ff9d9d}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row>*{flex:1;min-width:0}.columns{display:grid;grid-template-columns:minmax(350px,1.08fr) minmax(330px,1fr);gap:14px}.money{font-size:23px;color:#65ffb5;font-weight:900}.pickgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.pick{background:#254756;color:#fff;text-align:left;min-height:88px;overflow-wrap:anywhere;padding:12px}.pick strong{display:block;color:#80ffc5;font-size:14px;margin-bottom:4px}.pick small{color:#bbd8d5;line-height:1.35;display:block}.pick em{font-size:11px;color:#94b6ba;font-style:normal}.price{font-size:35px;color:var(--mint);font-weight:950;margin:6px 0}.clock{font-size:30px;font-weight:900;color:var(--gold)}.history,.chat{background:#0d202d;border:1px solid #2c4855;padding:10px;max-height:170px;overflow:auto;text-align:left;border-radius:10px;overflow-wrap:anywhere}.history p,.chat p{border-bottom:1px solid #2a4958;padding:5px 0;margin:0}.pitch{aspect-ratio:.76;background:repeating-linear-gradient(0deg,#1b6945 0%,#1b6945 10%,#237b4e 10%,#237b4e 20%);border:3px solid #d7f4e6;max-width:560px;margin:auto;position:relative;border-radius:6px}.pitch:before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px solid #d7f4e6}.pitch:after{content:"";position:absolute;width:24%;aspect-ratio:1;border:2px solid #d7f4e6;border-radius:50%;left:38%;top:50%;transform:translateY(-50%);pointer-events:none}.penalty{position:absolute;left:26%;width:48%;height:13%;border:2px solid #d7f4e6;pointer-events:none}.penalty.top{top:0;border-top:0}.penalty.bottom{bottom:0;border-bottom:0}.slot{position:absolute;transform:translate(-50%,-50%);width:18%;min-height:38px;background:#0b263de8;border:1px solid #b0d6ce;border-radius:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:10px;text-align:center;padding:3px;line-height:1.17;overflow-wrap:anywhere;z-index:1;touch-action:manipulation}.slot.mine{background:#075441ed;border-color:#53fcb0}.slot.filled{font-weight:bold}.slot.selected{outline:3px solid var(--gold)}.slot small{font-size:9px;color:#daeae4}.teamtag{position:absolute;z-index:2;background:#0b202ce8;padding:5px 8px;font-size:11px;border-radius:5px;left:5px}.teamtag.top{top:4px}.teamtag.bottom{bottom:4px}.subhead{display:flex;justify-content:space-between;gap:8px}.subhead>div{min-width:0}.squads{font-size:12px;line-height:1.6;overflow-wrap:anywhere}.actions{display:flex;gap:8px}.actions button{flex:1;min-width:0}.full{width:100%}.pill{display:inline-block;border:1px solid #4c746f;background:#1b4846;padding:4px 7px;border-radius:999px;font-size:12px;font-weight:700;margin:3px}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button{flex:1;min-width:85px}.progress{height:5px;background:#365060;border-radius:6px;overflow:hidden}.progress>div{height:100%;background:var(--mint)}.matchwrap{display:grid;grid-template-columns:minmax(340px,550px) minmax(300px,1fr);gap:15px;align-items:start}.matchcanvas{display:block;width:100%;height:auto;border:3px solid #d7f1e6;border-radius:9px;background:#197448}.scoreboard{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin:12px 0;background:#092c30;border-radius:12px;padding:13px;text-align:center}.scoreboard strong{font-size:31px;color:var(--mint);white-space:nowrap}.statsgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{padding:12px 5px;text-align:center;background:#234252;border:1px solid #395d63;border-radius:9px}.stat strong{display:block;color:var(--mint);font-size:20px}.stat small{color:#bdd0c7}.tablewrap{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:360px;font-size:13px}th,td{text-align:left;padding:8px;border-bottom:1px solid #385362}th{color:#92f5c1}td.number,th.number{text-align:right}td.rating{font-weight:900;color:var(--gold)}.matchcontrols{display:flex;gap:7px;flex-wrap:wrap}.matchcontrols button{flex:1}.overlayNotice{border:1px solid #568981;background:#183d43;border-radius:9px;padding:10px;margin:10px 0}.tacticsGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.tacticsGrid label{margin:3px 0}.matchlog{max-height:210px}.lead{font-size:18px;line-height:1.45}.tiny{font-size:11px;color:#96b4b7}.tag{padding:3px 7px;border:1px solid #66867f;border-radius:99px;font-size:11px;display:inline-block;margin:2px}.mutedBlock{opacity:.68}@media(max-width:900px){.columns,.matchwrap{grid-template-columns:1fr}.wrap{padding:10px}.panel{padding:12px}.pitch{max-width:520px}}@media(max-width:410px){.slot{font-size:9px;padding:2px;min-height:33px}.pick{padding:9px}.pickgrid{gap:6px}.statsgrid{grid-template-columns:repeat(2,1fr)}.money{font-size:18px}.matchcontrols button{min-width:80px}}
 /* ────────── Pack opening ────────── */
@@ -32,25 +32,145 @@
 .club-card small{color:#264049}
 .club-card .coin-price{display:inline-block;font-size:13px;font-weight:900;color:#182a3b;background:#ffffff80;border-radius:5px;padding:4px}
 
+/* BIDXI V7 — bespoke cinematic interface. All stadium art is original inline SVG. */
+:root{--bg:#040c10;--panel:#0e2128;--panel2:#193137;--stroke:#38545a;--text:#f1f8f6;--mint:#a0ffe0;--muted:#afc7c7;--gold:#f6d78b;color-scheme:dark}
+html{background:#040b0f}body{background:#041016;color:#e7f3ee;min-height:100vh;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif;letter-spacing:.008em}body:after{content:"";position:fixed;z-index:-1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 70% 0%,#285b5925,transparent 58%)}
+button{border-radius:9px;background:linear-gradient(115deg,#bcffe2,#55deb1);color:#061c19;font-weight:850;transition:transform .2s cubic-bezier(.2,.9,.2,1),box-shadow .2s,filter .2s;box-shadow:0 5px 19px #00000030}
+button:hover:not(:disabled){filter:brightness(1.08);transform:translateY(-2px);box-shadow:0 10px 25px #0000003d}button:active:not(:disabled){transform:translateY(0) scale(.985)}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #d2ffdf;outline-offset:3px}
+.secondary{background:linear-gradient(145deg,#233b43,#162d36);border:1px solid #52716a;color:#e2f4ee}.danger{background:#b74a4e;color:white}
+input,select{background:#081b24ed;border:1px solid #48666a;border-radius:9px;color:#eaf8f4;min-height:43px;transition:border-color .2s,box-shadow .2s}input:focus,select:focus{border-color:#9cefd5;box-shadow:0 0 0 3px #4ca78a21}
+h1{color:#f0fff7;letter-spacing:-.055em}h2,h3{letter-spacing:-.025em}.small,.muted{color:#a3bdba}.warning{color:#ffe1a2}.panel{position:relative;background:linear-gradient(155deg,#1b323ce9 0%,#0c1d27f2 94%);border-color:#52706e60;border-radius:16px;box-shadow:0 14px 45px #00000028,inset 0 1px #d8fff713;backdrop-filter:blur(15px)}
+.wrap{max-width:1400px;position:relative;z-index:2;margin:0 auto;padding:20px 26px 90px;min-height:calc(100vh - 74px)}.v7-app-shell{isolation:isolate;position:relative;z-index:1;min-height:100vh}
+/* Cinematic scene */
+.v7-world{pointer-events:none;position:fixed;inset:0;z-index:0;overflow:hidden;opacity:.28;transition:opacity .65s;transform:translateZ(0)}body[data-page="home"] .v7-world,body[data-page="menu"] .v7-world{opacity:1}
+.v7-stadium-container{position:absolute;inset:-4%;transform:scale(1.035);animation:v7StadiumPan 27s ease-in-out infinite alternate;will-change:transform}.v7-stadium-art{position:absolute;inset:0;width:100%;height:100%;filter:saturate(.96)}
+.v7-world:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#020b10ec 0%,#03121bce 33%,#07151a50 70%,#02091070 100%),linear-gradient(0deg,#021015ff 0%,transparent 38%,#01081177 100%)}
+.v7-world-fog{position:absolute;z-index:1;inset:24% -25% -38%;background:radial-gradient(ellipse at 55% 65%,#89dbce30 0%,transparent 65%);mix-blend-mode:screen;filter:blur(90px);animation:v7FogDrift 21s ease-in-out infinite alternate}
+.v7-world-grain{position:absolute;z-index:2;inset:-50%;opacity:.055;background-image:url('data:image/svg+xml,%3Csvg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="n"%3E%3CfeTurbulence type="fractalNoise" baseFrequency=".88" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Cpath filter="url(%23n)" opacity=".85" d="M0 0h160v160H0z"/%3E%3C/svg%3E');animation:v7GrainShift 1.4s steps(4) infinite}
+.v7-particle{position:absolute;z-index:2;width:3px;height:3px;border-radius:50%;background:#bbfff5;opacity:.6;box-shadow:0 0 20px 6px #b3ffee35;animation:v7Particle 13s linear infinite}.v7-particle-a{left:73%;top:69%}.v7-particle-b{left:91%;top:34%;animation-delay:-5s}.v7-particle-c{left:51%;top:76%;animation-delay:-9s}
+@keyframes v7StadiumPan{0%{transform:translate3d(var(--v7parallaxX,0px),var(--v7parallaxY,0px),0) scale(1.04) translateX(-.4%) translateY(0)}100%{transform:translate3d(var(--v7parallaxX,0px),var(--v7parallaxY,0px),0) scale(1.10) translateX(1.2%) translateY(-1.1%)}}@keyframes v7FogDrift{to{transform:translate(-6%,3%) rotate(2deg)}}@keyframes v7GrainShift{0%{transform:translate(0,0)}100%{transform:translate(-2%,2%)}}@keyframes v7Particle{0%{transform:translate(0,25px);opacity:0}20%{opacity:.65}80%{opacity:.35}100%{transform:translate(-40px,-160px);opacity:0}}
+/* Player HUD */
+.v7-topbar{height:76px;padding:0 clamp(14px,3.6vw,58px);position:sticky;z-index:80;top:0;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #c2fff020;background:linear-gradient(180deg,#041116d9,#07171cc2);box-shadow:0 10px 45px #0000001a;backdrop-filter:blur(22px) saturate(1.3)}
+.v7-brand{border:0;box-shadow:none;background:transparent;color:white;padding:4px 0;display:flex;align-items:center;gap:10px;flex-shrink:0;text-align:left}.v7-brand:hover:not(:disabled){box-shadow:none;background:transparent;transform:none}.v7-crest{width:40px;height:44px;display:grid;place-items:center;background:linear-gradient(155deg,#dcffed,#4bb891);clip-path:polygon(50% 0,95% 18%,89% 77%,50% 100%,11% 77%,5% 18%);filter:drop-shadow(0 0 15px #66e4b462)}.v7-crest span{width:31px;height:35px;display:grid;place-items:center;font-size:16px;font-weight:1000;letter-spacing:-.12em;color:#112825;background:#082824;clip-path:polygon(50% 0,95% 18%,89% 77%,50% 100%,11% 77%,5% 18%)}.v7-brand-text{font-weight:950;line-height:1;letter-spacing:.09em;font-size:17px}.v7-brand-text b{color:#9bf2cb}.v7-brand-text small{display:block;letter-spacing:.21em;font-size:8px;color:#9eb5b7;font-weight:700;margin-top:5px}
+.v7-topnav{display:flex;align-items:center;gap:4px;min-width:0}.v7-topnav button{padding:12px 15px;border-radius:0;background:transparent;border:0;box-shadow:none;color:#b6c9c9;position:relative;font-size:11px;font-weight:850;letter-spacing:.15em}.v7-topnav button:hover:not(:disabled){box-shadow:none;transform:none;color:white;background:#d6ffee0b}.v7-topnav button.is-active{color:#dbffee}.v7-topnav button.is-active:after{content:"";position:absolute;bottom:-13px;left:15px;right:15px;height:2px;background:#96ffd0;box-shadow:0 0 12px #9cfac7}
+.v7-userhud{display:flex;gap:11px;align-items:center;flex-shrink:0}.v7-wallet{display:flex;gap:7px;align-items:center;background:#071c23ba;border:1px solid #65948d69;padding:9px 11px;border-radius:9px;font-variant-numeric:tabular-nums}.v7-wallet-icon{color:#f9d989;font-size:18px}.v7-wallet strong{font-weight:900;font-size:14px}.v7-wallet small{font-size:9px;letter-spacing:.12em;color:#a8babd}.v7-userchip{display:flex;gap:9px;align-items:center;font-size:11px;max-width:135px;overflow:hidden;font-weight:850;letter-spacing:.09em;color:#d8e9e8;white-space:nowrap}.v7-user-avatar{width:32px;height:32px;display:grid;place-items:center;border:1px solid #7ce8bf85;border-radius:9px;color:#a5f7d0;background:#132d32}.v7-userchip #v7HudName{text-overflow:ellipsis;overflow:hidden}
+/* Landing screen */
+.v7-home.screen{max-width:none;margin:0;min-height:calc(100vh - 118px);display:flex;flex-direction:column;justify-content:space-between;text-align:left}.v7-hero-inner{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.74fr);gap:40px;align-items:end;max-width:1280px;width:100%;margin:clamp(36px,7vh,90px) auto auto}.v7-hero-copy{padding-bottom:28px}.v7-eyebrow{display:flex;align-items:center;gap:12px;color:#c6efe0;font-size:10px;font-weight:850;letter-spacing:.25em;white-space:normal}.v7-dot{width:7px;height:7px;background:#a5ffcc;border-radius:50%;box-shadow:0 0 0 5px #69efb013,0 0 18px #8fffd0;display:inline-block;flex-shrink:0;animation:v7Pulse 2.7s ease-in-out infinite}.v7-line{width:28px;height:1px;background:#baded275;flex-shrink:0}.v7-hero-logo{margin-top:52px}.v7-hero-kicker{color:#c0d3cf;font-weight:850;font-size:12px;letter-spacing:.29em}.v7-hero-logo h1{font-size:clamp(74px,11vw,164px);line-height:.75;letter-spacing:-.085em;font-weight:1000;margin:30px 0 36px;color:#f9fff8;text-shadow:0 15px 65px #00000070}.v7-hero-logo h1 em{font-style:normal;color:#a2f4cc}.v7-fullstop{color:#fff3a4}.v7-hero-tagline{font-size:clamp(21px,2.5vw,36px);font-weight:800;line-height:1.13;letter-spacing:.09em;margin:0 0 17px}.v7-hero-tagline strong{color:#a2f1d1;font-weight:900}.v7-hero-desc{max-width:430px;font-size:14px;line-height:1.7;color:#c0cece;margin-bottom:31px}.v7-hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.v7-primary{background:linear-gradient(112deg,#bdffe2,#67e8af);color:#08241d;border:1px solid #a1ffd7;box-shadow:0 10px 30px #0000004f,0 0 40px #80ffd223}.v7-cta{min-width:240px;min-height:59px;text-align:left;font-size:12px;font-weight:1000;letter-spacing:.12em;display:flex;align-items:center;justify-content:space-between;padding:0 18px}.v7-cta-arrow{font-size:24px;font-weight:500}.v7-cta-caption{font-size:10px;letter-spacing:.22em;font-weight:750;color:#a8c6bc}.v7-home .v7-access-card{margin-bottom:40px;padding:26px;border:1px solid #9edacb44;background:linear-gradient(135deg,#152c32df,#08191fd9);box-shadow:0 25px 90px #00000070,inset 0 1px #d9fff01b;backdrop-filter:blur(25px);border-radius:6px 19px 19px 19px;position:relative}.v7-access-card:before{content:"";position:absolute;top:-1px;left:-1px;width:76px;height:2px;background:#a4ffca;box-shadow:0 0 20px #a4ffca}.v7-panel-caption{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:900;color:#aff5d3;letter-spacing:.19em}.v7-small-label{margin-left:auto;font-size:9px;color:#7caba0}.v7-access-card h2{font-size:25px;letter-spacing:-.035em;margin:32px 0 4px}.v7-access-card>p{font-size:12px;color:#a8c5bf;line-height:1.6}.v7-access-card label{font-size:10px;letter-spacing:.16em;margin-top:26px}.v7-input-line{display:flex;align-items:stretch;gap:5px}.v7-input-line input{width:100%;min-width:0;flex:1}.v7-input-line button{width:45px;flex:0 0 45px;font-size:19px}.v7-access-card #connection{font-size:10px;letter-spacing:.055em;min-height:19px;margin-top:14px}.v7-access-foot{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:#719e92;font-size:9px;font-weight:800;letter-spacing:.08em;border-top:1px solid #ffffff1d;padding-top:17px;margin-top:24px}.v7-hero-bottom{display:flex;justify-content:space-between;gap:15px;border-top:1px solid #ffffff24;padding:16px 0;color:#8fafad;letter-spacing:.16em;font-size:9px;font-weight:700}.v7-corner{color:#cce1d3}.v7-corner span{font-size:18px;margin-left:10px}
+@keyframes v7Pulse{50%{opacity:.37;box-shadow:0 0 0 8px #69efb000,0 0 28px #8fffd0}}
+/* Cinematic hub */
+.v7-menu.screen{max-width:1280px;margin:clamp(22px,4vw,65px) auto 0;text-align:left;display:block}.v7-menu-head h1{font-size:clamp(38px,5vw,66px);line-height:1.08;margin:17px 0 7px;font-weight:950}.v7-menu-head h1 em{color:#a2f3cd;font-style:normal}.v7-menu-head>p{font-size:13px;color:#b0c6bf;margin:0 0 28px}.v7-menu-grid{display:grid;grid-template-columns:minmax(360px,.96fr) minmax(400px,1.04fr);gap:16px}.v7-menu-feature{position:relative;isolation:isolate;min-height:520px;overflow:hidden;background:radial-gradient(ellipse at 69% 21%,#5adb9341,transparent 43%),linear-gradient(139deg,#163e3be8,#081f26f2 75%);border:1px solid #a1ffd359;border-radius:18px;box-shadow:0 20px 60px #0000004d,inset 0 1px #cbfff029;backdrop-filter:blur(16px)}.v7-menu-feature:before{content:"";position:absolute;z-index:-1;width:390px;height:390px;top:3%;right:-21%;border-radius:50%;border:1px solid #a2f7d237;box-shadow:0 0 0 50px #d2ffeb08,0 0 0 110px #d2ffeb06,0 0 0 170px #d2ffeb04}.v7-menu-feature:after{content:"";position:absolute;z-index:-1;width:70%;height:190px;right:-19%;bottom:-70px;background:linear-gradient(120deg,#90e8b21c,#85ffd600);transform:rotate(-32deg)}.v7-feature-glow{position:absolute;z-index:-1;width:180px;height:240px;right:14%;top:16%;background:#66fcb032;filter:blur(105px)}.v7-feature-content{height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(22px,3vw,39px)}.v7-feature-label{font-size:10px;font-weight:850;letter-spacing:.2em;color:#addfce}.v7-feature-emblem{font-size:88px;letter-spacing:-.15em;line-height:1;text-align:right;padding:12px 16px 0 0;color:#cbffeb;text-shadow:0 0 35px #76faba70;font-weight:1000}.v7-feature-emblem span{display:inline-block;font-size:29px;letter-spacing:0;vertical-align:top;transform:translate(12px,8px);font-weight:400}.v7-menu-feature h2{font-size:clamp(29px,3.5vw,51px);line-height:1.02;font-weight:950;letter-spacing:-.06em;margin:0}.v7-menu-feature h2 em{color:#a3f3d1;font-style:normal}.v7-menu-feature p{color:#bad0c7;font-size:13px;line-height:1.6;max-width:340px}.v7-feature-button{display:flex;align-items:center;justify-content:space-between;max-width:290px;min-height:51px;letter-spacing:.12em;font-size:12px}.v7-feature-button span{font-size:21px}.v7-feature-bottom{display:flex;justify-content:space-between;gap:8px;color:#7fae9e;font-size:9px;font-weight:850;letter-spacing:.13em;padding-top:22px;border-top:1px solid #ccffdf1c}.v7-menu-tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,1fr);gap:12px}.v7-tile{position:relative;min-width:0;min-height:155px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;text-align:left;padding:19px 19px 16px;border:1px solid #90b7ad4a;border-radius:13px;background:linear-gradient(140deg,#20363dbd,#0d222bef);backdrop-filter:blur(16px);box-shadow:inset 0 1px #ffffff15,0 10px 30px #00000032;overflow:hidden;color:#edf5f0}.v7-tile:hover:not(:disabled){box-shadow:inset 0 1px #ffffff29,0 20px 40px #00000052;border-color:#b4ffe58c;transform:translateY(-5px)}.v7-tile:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;top:-90px;right:-90px;background:#8cffe51d;filter:blur(15px)}.v7-tile-top{width:100%;display:flex;justify-content:space-between;align-items:center;gap:5px;color:#9abbb2}.v7-tile-index{font-size:9px;letter-spacing:.16em;font-weight:850}.v7-tile-arrow{font-size:20px;color:#c5e5d6}.v7-tile-icon{font-size:24px;opacity:.88;color:#b4ffe5;line-height:1}.v7-tile strong{font-size:22px;line-height:1.05;font-weight:930;letter-spacing:-.03em}.v7-tile small{font-size:10px;color:#a8c9c3;font-weight:600}.v7-tile-pack{background:linear-gradient(142deg,#3a3555d9,#172337ee);border-color:#ae96dd70}.v7-tile-pack .v7-tile-icon{color:#e5b2ff}.v7-tile-pack #menuPoints{color:#f8d8aa;font-weight:900}.v7-tile-market{background:linear-gradient(140deg,#3b3428c9,#19232ae8);border-color:#f8d19b64}.v7-tile-market .v7-tile-icon{color:#fdd69b}.v7-tile-club{background:linear-gradient(145deg,#1d3d36d8,#12242aee)}.v7-tile-stat{background:linear-gradient(130deg,#202e35c9,#12202aee)}.v7-menu-foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #ffffff20;padding:19px 0 0;margin-top:23px;color:#7aaca3;font-size:10px;font-weight:800;letter-spacing:.1em}.v7-menu-foot b{color:#9bf4cf}
+/* Shared game surfaces */
+body[data-page="game"] .wrap,body[data-page="match"] .wrap{max-width:1440px}.pitch{box-shadow:0 15px 50px #0000008a,0 0 0 6px #7bebae0a;background:repeating-linear-gradient(0deg,#165c43 0%,#165c43 10%,#1b724e 10%,#1b724e 20%);border-color:#d8ffeb90}.slot{box-shadow:0 4px 10px #0009;backdrop-filter:blur(7px)}.slot.mine{background:#0a5546ed;border-color:#96ffce}.slot.filled{background:#1a3448ea;border-color:#ddf3f0}.slot.mine.filled{background:#046342ee}.pick{background:linear-gradient(138deg,#2d5457,#162f40);border:1px solid #679e9870;box-shadow:inset 0 1px #ffffff0f;position:relative;overflow:hidden}.pick:hover:not(:disabled){background:linear-gradient(138deg,#3c6c65,#1c424a);border-color:#b0ffdc}.pick strong{font-weight:900;color:#c3ffe0}.pick em{color:#a4cabe}.clock{font-variant-numeric:tabular-nums;color:#ffe39d}.price{letter-spacing:-.04em}.history,.chat{background:#071a20b8;border-color:#54736a63;backdrop-filter:blur(8px)}.pill{background:#19423d70;color:#d7ffe8;border-color:#7aba9b62}.scoreboard{background:#081e27dd;border:1px solid #8adeb441;box-shadow:0 15px 45px #0004}.scoreboard strong{color:#c5ffe6}.statsgrid .stat{background:linear-gradient(145deg,#244c50,#112d39);border-color:#88bea75c}.stat strong{color:#d1ffe8}.matchcanvas{box-shadow:0 13px 40px #0006;border-color:#bed9d16b}.pack-product{box-shadow:0 18px 50px #00000057,inset 0 1px #ffffff24;backdrop-filter:blur(14px)}.pack-product.basic{background:radial-gradient(ellipse at 76% 13%,#39c9e64c,transparent 58%),linear-gradient(135deg,#183d4d,#0a1d2e)}.pack-product.premium{background:radial-gradient(ellipse at 76% 13%,#e9bc9945,transparent 55%),linear-gradient(135deg,#443758,#171d33)}.mini-card{border-radius:13px;transition:transform .24s,box-shadow .24s;box-shadow:0 10px 24px #0003}.mini-card:hover{transform:translateY(-4px);box-shadow:0 16px 32px #0005}.pack-reveal{box-shadow:0 0 45px #ffd86c8e,0 22px 70px #0008}.panel>h2:first-child,.panel>h3:first-child{text-transform:uppercase;font-weight:900;letter-spacing:.04em}
+/* Dynamic screens and responsive layout */
+body[data-page="home"] .wrap{max-width:1450px}body[data-page="menu"] .wrap{max-width:1400px}
+@media(max-width:1130px){.v7-topnav{gap:0}.v7-topnav button{padding:10px 9px;letter-spacing:.08em}.v7-brand-text small{display:none}.v7-hero-logo h1{font-size:clamp(74px,10vw,125px)}}
+@media(max-width:930px){.v7-hero-inner{grid-template-columns:1fr;gap:8px;margin:28px auto 0}.v7-home .v7-access-card{max-width:450px;margin:0 0 45px}.v7-hero-logo{margin-top:35px}.v7-hero-logo h1{font-size:clamp(70px,14vw,130px)}.v7-menu-grid{grid-template-columns:1fr}.v7-menu-feature{min-height:390px}.v7-feature-emblem{font-size:56px}.v7-feature-content{gap:8px}.v7-menu-tiles{grid-template-rows:repeat(3,165px)}.v7-world:before{background:linear-gradient(90deg,#020b10ef,#03121be0 48%,#04141a9f)}}
+@media(max-width:670px){.v7-topbar{height:auto;min-height:67px;flex-wrap:wrap;gap:5px 8px;padding:9px 13px}.v7-brand{order:0}.v7-brand-text{font-size:14px}.v7-crest{width:34px;height:37px}.v7-crest span{width:27px;height:30px;font-size:14px}.v7-userhud{order:1;margin-left:auto;gap:6px}.v7-wallet{padding:6px 8px}.v7-userchip{display:none}.v7-topnav{order:2;flex-basis:100%;justify-content:space-between}.v7-topnav button{font-size:10px;letter-spacing:.06em;padding:8px 5px}.v7-topnav button.is-active:after{bottom:-8px;left:5px;right:5px}.wrap{padding:12px 12px 65px}.v7-home.screen{min-height:calc(100vh - 110px)}.v7-hero-inner{margin-top:12px}.v7-eyebrow{font-size:9px;letter-spacing:.11em;gap:8px}.v7-hero-logo{margin-top:36px}.v7-hero-logo h1{font-size:clamp(64px,15vw,115px);margin:23px 0 25px}.v7-hero-tagline{font-size:22px}.v7-hero-desc{font-size:12px}.v7-hero-actions{gap:12px}.v7-cta-caption{font-size:9px}.v7-home .v7-access-card{padding:18px}.v7-hero-bottom{font-size:8px}.v7-corner{display:none}.v7-menu.screen{margin-top:20px}.v7-menu-head h1{font-size:clamp(32px,10vw,52px)}.v7-menu-tiles{gap:8px;grid-template-rows:repeat(3,148px)}.v7-tile{min-height:0;padding:14px}.v7-tile strong{font-size:19px}.v7-tile-icon{font-size:21px}.v7-tile small{font-size:9px}.v7-menu-feature{min-height:355px}.v7-feature-content{padding:21px}.v7-feature-emblem{font-size:48px}.v7-menu-feature h2{font-size:35px}.v7-menu-foot{font-size:9px}}
+@media(max-width:375px){.v7-menu-tiles{grid-template-columns:1fr;grid-template-rows:repeat(6,130px)}.v7-tile{padding:13px 18px}.v7-tile-icon{position:absolute;right:18px;bottom:22px;font-size:32px}.v7-hero-logo h1{font-size:60px}}
+@media(prefers-reduced-motion:reduce){.v7-stadium-container,.v7-world-fog,.v7-world-grain,.v7-particle,.v7-dot{animation:none!important}button,.mini-card{transition:none}}
+
 </style>
 </head>
-<body>
+<body data-page="home">
+<div class="v7-world" aria-hidden="true">
+ <div class="v7-stadium-container"><svg class="v7-stadium-art" viewBox="0 0 1600 940" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<defs>
+ <radialGradient id="sky" cx="49%" cy="16%" r="76%"><stop stop-color="#183b4a"/><stop offset=".45" stop-color="#071924"/><stop offset="1" stop-color="#02060c"/></radialGradient>
+ <linearGradient id="field" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#103e37"/><stop offset=".42" stop-color="#125c49"/><stop offset="1" stop-color="#091e1d"/></linearGradient>
+ <linearGradient id="air" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#a9f7e9" stop-opacity=".13"/><stop offset="1" stop-color="#a9f7e9" stop-opacity="0"/></linearGradient>
+ <linearGradient id="beamL" x1="0" x2="1"><stop stop-color="#b7f4e7" stop-opacity=".02"/><stop offset=".3" stop-color="#b7f4e7" stop-opacity=".24"/><stop offset="1" stop-color="#b7f4e7" stop-opacity="0"/></linearGradient>
+ <linearGradient id="beamR" x1="1" x2="0"><stop stop-color="#b7f4e7" stop-opacity=".02"/><stop offset=".3" stop-color="#b7f4e7" stop-opacity=".24"/><stop offset="1" stop-color="#b7f4e7" stop-opacity="0"/></linearGradient>
+ <radialGradient id="halo"><stop stop-color="#f6fffa" stop-opacity=".93"/><stop offset=".15" stop-color="#c2f5e9" stop-opacity=".54"/><stop offset=".58" stop-color="#9ad9d0" stop-opacity=".08"/><stop offset="1" stop-color="#abf6ed" stop-opacity="0"/></radialGradient>
+ <radialGradient id="vignette"><stop offset=".42" stop-color="#02070d" stop-opacity="0"/><stop offset="1" stop-color="#01050a" stop-opacity=".91"/></radialGradient>
+ <pattern id="crowd" width="13" height="9" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#6c96a4" opacity=".3"/><circle cx="9" cy="7" r=".7" fill="#b4c8c1" opacity=".23"/><path d="M0 6H13" stroke="#324c56" stroke-opacity=".26"/></pattern>
+ <pattern id="stripes" width="120" height="65" patternUnits="userSpaceOnUse"><path d="M0 0H120V33H0z" fill="#d5fadd" opacity=".03"/></pattern>
+ <filter id="soft"><feGaussianBlur stdDeviation="18"/></filter>
+ <filter id="soft2"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<rect width="1600" height="940" fill="url(#sky)"/>
+<path d="M0 0H1600V245Q800 70 0 245Z" fill="#050c12" opacity=".9"/>
+<path d="M0 0 280 0 550 265 400 285Z" fill="#06101a" opacity=".68"/><path d="M1600 0 1330 0 1070 265 1210 285Z" fill="#06101a" opacity=".68"/>
+<path d="M0 201Q800 -52 1600 201" fill="none" stroke="#3c5761" stroke-width="10" opacity=".3"/>
+<ellipse cx="800" cy="540" rx="1090" ry="245" fill="#0c2730" opacity=".95"/>
+<path d="M-100 405Q800 135 1700 405L1700 630Q800 426 -100 630Z" fill="#0a161f"/>
+<path d="M-100 405Q800 135 1700 405L1700 625Q800 425 -100 625Z" fill="url(#crowd)" opacity=".75"/>
+<path d="M-100 392Q800 134 1700 392" fill="none" stroke="#537c84" stroke-width="12" opacity=".27"/>
+<path d="M-100 469Q800 246 1700 469" fill="none" stroke="#306b66" stroke-width="22" opacity=".43"/>
+<path d="M-100 523Q800 318 1700 523" fill="none" stroke="#43a68a" stroke-width="9" opacity=".62"/>
+<path d="M0 625Q800 408 1600 625L1600 700Q800 525 0 700Z" fill="#061b21"/>
+<path d="M0 631Q800 417 1600 631" fill="none" stroke="#8dedd4" stroke-width="5" opacity=".22"/>
+<path d="M-280 970 350 603 1250 603 1880 970Z" fill="url(#field)"/>
+<path d="M-280 970 350 603 1250 603 1880 970Z" fill="url(#stripes)" opacity=".9"/>
+<path d="M170 835 433 650 1167 650 1430 835" fill="none" stroke="#acd7bb" stroke-width="3" opacity=".25"/>
+<path d="M800 645V935" stroke="#b8ebcd" opacity=".23" stroke-width="3"/>
+<ellipse cx="800" cy="746" rx="195" ry="58" fill="none" stroke="#b5eac8" stroke-width="3" opacity=".24"/>
+<path d="M586 935 634 825 966 825 1014 935" fill="none" stroke="#d5f7d4" stroke-width="3" opacity=".21"/>
+<path d="M0 780Q800 690 1600 780" fill="none" stroke="#dceadd" stroke-width="2" opacity=".15"/>
+<ellipse cx="800" cy="615" rx="500" ry="95" fill="#c1fbd8" opacity=".08" filter="url(#soft)"/>
+<path d="M48 178 870 790 550 790Z" fill="url(#beamL)" opacity=".8"/>
+<path d="M1550 172 720 800 1030 800Z" fill="url(#beamR)" opacity=".8"/>
+<path d="M184 175 1000 720 780 720Z" fill="url(#beamL)" opacity=".35"/>
+<path d="M1420 175 600 720 820 720Z" fill="url(#beamR)" opacity=".35"/>
+<ellipse cx="165" cy="205" rx="300" ry="260" fill="url(#halo)"/>
+<ellipse cx="1440" cy="205" rx="320" ry="270" fill="url(#halo)"/>
+<g opacity=".98">
+ <path d="M35 146h260v36H35z" fill="#dae7e6" opacity=".07" filter="url(#soft2)"/>
+ <path d="M1325 146h260v36h-260z" fill="#dae7e6" opacity=".07" filter="url(#soft2)"/>
+ <g fill="#e6fff8">
+  <rect x="47" y="150" width="42" height="14" rx="3"/><rect x="97" y="150" width="42" height="14" rx="3"/><rect x="147" y="150" width="42" height="14" rx="3"/><rect x="197" y="150" width="42" height="14" rx="3"/>
+  <rect x="1360" y="150" width="42" height="14" rx="3"/><rect x="1410" y="150" width="42" height="14" rx="3"/><rect x="1460" y="150" width="42" height="14" rx="3"/><rect x="1510" y="150" width="42" height="14" rx="3"/>
+ </g>
+ </g>
+<rect width="1600" height="940" fill="url(#vignette)"/>
+<rect width="1600" height="940" fill="url(#air)" opacity=".5"/>
+</svg></div>
+ <div class="v7-world-fog"></div><div class="v7-world-grain"></div>
+ <div class="v7-particle v7-particle-a"></div><div class="v7-particle v7-particle-b"></div><div class="v7-particle v7-particle-c"></div>
+</div>
+<div class="v7-app-shell">
+<header class="v7-topbar" id="v7Topbar">
+  <button type="button" class="v7-brand" onclick="v7Navigate('menu')" aria-label="BidXI Rivals — menu"><span class="v7-crest"><span>XI</span></span><span class="v7-brand-text">BIDXI <b>RIVALS</b><small>TACTICAL FOOTBALL EXPERIENCE</small></span></button>
+  <nav class="v7-topnav" aria-label="Game navigation">
+    <button onclick="v7Navigate('menu')" data-to="menu">PLAY</button>
+    <button onclick="v7Navigate('packs')" data-to="packs">PACKS</button>
+    <button onclick="v7Navigate('club')" data-to="club">MY CLUB</button>
+    <button onclick="v7Navigate('market')" data-to="market">MARKET</button>
+  </nav>
+  <div class="v7-userhud"><div class="v7-wallet" title="Points earned from matches"><span class="v7-wallet-icon">◆</span><strong id="v7HudPoints">0</strong><small>PTS</small></div><div class="v7-userchip"><span class="v7-user-avatar">◈</span><span id="v7HudName">GUEST</span></div></div>
+</header>
 <div class="wrap">
-<section id="home" class="screen">
-<h1>⚽ BidXI Rivals</h1><p class="lead">Build your dream team. Win the auction. Play the match.</p>
-<div class="panel"><label>Your player name</label><input id="name" maxlength="20" placeholder="Enter your name"><button class="full" style="margin-top:12px" onclick="saveName()">Save name</button></div>
-<button onclick="openMenu()">Play Game</button><p class="tiny" id="connection">Online connection starting...</p>
+<section id="home" class="screen v7-home">
+ <div class="v7-hero-inner">
+  <div class="v7-hero-copy">
+   <div class="v7-eyebrow"><span class="v7-dot"></span> SEASON 01 <span class="v7-line"></span> ORIGINAL FOOTBALL AUCTION GAME</div>
+   <div class="v7-hero-logo"><span class="v7-hero-kicker">WELCOME TO THE AUCTION</span><h1>BIDXI<br><em>RIVALS<span class="v7-fullstop">.</span></em></h1></div>
+   <p class="v7-hero-tagline">BUILD THE SQUAD.<br><strong>OWN THE MATCH.</strong></p>
+   <p class="v7-hero-desc">Win the bidding war. Build your starting XI. Outthink your rival in a cinematic football experience.</p>
+   <div class="v7-hero-actions"><button class="v7-primary v7-cta" onclick="openMenu()"><span>ENTER THE GAME</span><span class="v7-cta-arrow">↗</span></button><span class="v7-cta-caption">AUCTION / TACTICS / MATCHDAY</span></div>
+  </div>
+  <div class="v7-access-card"><div class="v7-panel-caption"><span class="v7-dot"></span> PLAYER ACCESS <span class="v7-small-label">01 / IDENTIFY</span></div>
+    <h2>YOUR IDENTITY.</h2><p>Choose a nickname to enter the arena.</p>
+    <label for="name">PLAYER NAME</label><div class="v7-input-line"><input id="name" maxlength="20" placeholder="Enter your player name" autocomplete="nickname"><button onclick="saveName()" aria-label="Save player name">✓</button></div>
+    <p id="connection" class="tiny">Connecting to online services…</p>
+    <div class="v7-access-foot"><span>PRIVATE ROOMS</span><span>•</span><span>PLAY VS AI</span><span>•</span><span>CARD CLUB</span></div>
+  </div>
+ </div>
+ <div class="v7-hero-bottom"><span>© BIDXI RIVALS — ORIGINAL FAN-MADE CONCEPT</span><span class="v7-corner">SCROLL TO ENTER THE ARENA <span>↓</span></span></div>
 </section>
-<section id="menu" class="screen hidden">
-<h1>⚽ BidXI Rivals</h1><h2>Choose Game Mode</h2>
-<button onclick="openSettings('ai')">🤖 Play vs AI</button>
-<button onclick="openSettings('friends')">🤝 Play with Friends</button>
-<button onclick="openSettings('match')">🌍 Find Match</button>
-<button class="pack-menu-button" onclick="openPacks()">🎁 Pack Opening <span id="menuPoints" class="packbalance">0 pts</span></button>
-<button class="club-menu-button" onclick="openClub()">🏆 My Club</button>
-<button class="market-menu-button" onclick="openMarket()">🏪 Transfer Market</button>
-<button class="secondary" onclick="showPage('home')">Back</button>
-<p class="small">Both Fast and Normal simulations use your squad, positions and tactics.</p>
+<section id="menu" class="screen v7-menu hidden">
+ <div class="v7-menu-head"><div class="v7-eyebrow"><span class="v7-dot"></span> THE ARENA IS OPEN <span class="v7-line"></span> BIDXI RIVALS</div><h1>CHOOSE YOUR <em>DESTINY.</em></h1><p>One auction. Two squads. Only one can win the match.</p></div>
+ <div class="v7-menu-grid">
+  <article class="v7-menu-feature"><div class="v7-feature-glow"></div><div class="v7-feature-content"><span class="v7-feature-label">01 / THE MAIN EVENT</span><div class="v7-feature-emblem">XI<span>↗</span></div><h2>THE AUCTION<br><em>STARTS HERE.</em></h2><p>Pick a player. Raise the stakes. Build a team nobody can beat.</p><button class="v7-primary v7-feature-button" onclick="openSettings('ai')">PLAY VS AI <span>→</span></button><div class="v7-feature-bottom"><span>◉ NORMAL / HARD AI</span><span>22 PLAYER DRAFT</span></div></div></article>
+  <div class="v7-menu-tiles">
+   <button class="v7-tile v7-tile-friends" onclick="openSettings('friends')"><span class="v7-tile-top"><span class="v7-tile-index">02 / ONLINE</span><span class="v7-tile-arrow">↗</span></span><span class="v7-tile-icon">⌘</span><strong>PLAY WITH<br>FRIENDS</strong><small>Create a private duel</small></button>
+   <button class="v7-tile v7-tile-match" onclick="openSettings('match')"><span class="v7-tile-top"><span class="v7-tile-index">03 / MULTIPLAYER</span><span class="v7-tile-arrow">↗</span></span><span class="v7-tile-icon">◎</span><strong>FIND<br>MATCH</strong><small>Challenge a new rival</small></button>
+   <button class="v7-tile v7-tile-pack" onclick="openPacks()"><span class="v7-tile-top"><span class="v7-tile-index">04 / COLLECTION</span><span class="v7-tile-arrow">↗</span></span><span class="v7-tile-icon">✦</span><strong>PACK<br>OPENING</strong><small>Discover your next star <span id="menuPoints">0 pts</span></small></button>
+   <button class="v7-tile v7-tile-club" onclick="openClub()"><span class="v7-tile-top"><span class="v7-tile-index">05 / COLLECTION</span><span class="v7-tile-arrow">↗</span></span><span class="v7-tile-icon">⬡</span><strong>MY<br>CLUB</strong><small>Manage your collection</small></button>
+   <button class="v7-tile v7-tile-market" onclick="openMarket()"><span class="v7-tile-top"><span class="v7-tile-index">06 / MARKET</span><span class="v7-tile-arrow">↗</span></span><span class="v7-tile-icon">◆</span><strong>TRANSFER<br>MARKET</strong><small>Buy and sell cards</small></button>
+   <button class="v7-tile v7-tile-stat" onclick="showPage('home')"><span class="v7-tile-top"><span class="v7-tile-index">PLAYER ACCESS</span><span class="v7-tile-arrow">↗</span></span><span class="v7-tile-icon">◈</span><strong>MY<br>PROFILE</strong><small>Change your nickname</small></button>
+  </div>
+ </div>
+ <div class="v7-menu-foot"><span>TACTICAL MANAGER <b>•</b> CINEMATIC MATCH ENGINE</span><span>UNOFFICIAL GAME CONCEPT — NOT AFFILIATED WITH EA</span></div>
 </section>
 <section id="packs" class="hidden">
   <div class="row"><div><h1>🎁 Pack Opening</h1><p class="small">Win simulated games, earn points, collect footballers.</p></div><div style="text-align:right"><button class="secondary" onclick="showPage('menu')">← Back to menu</button></div></div>
@@ -165,6 +285,7 @@
 <div class="matchcontrols" style="margin-top:10px"><button id="pauseMatch" class="secondary" onclick="togglePause()">Pause</button><button id="speed1" onclick="setMatchSpeed(1)">1×</button><button id="speed2" class="secondary" onclick="setMatchSpeed(2)">2×</button><button id="speed4" class="secondary" onclick="setMatchSpeed(4)">4×</button></div>
 </div><div><div class="panel"><h2>Live match</h2><p class="small">Watch the players build attacks, run into space and press the ball. The match runs automatically; tactics, positions and quality affect the result.</p><div class="statsgrid" id="liveStats"></div></div><div class="panel"><h3>Match commentary</h3><div class="history matchlog" id="matchLog"></div></div><div id="normalResult" class="panel hidden"><h2>Full time</h2><p id="normalResultText" class="lead"></p><div id="normalReward" class="rewardline"></div><h3>Player ratings</h3><div class="tablewrap" id="normalRatings"></div></div></div></div></div>
 </section>
+</div>
 </div>
 <script type="module">
 // Curated footballer pool for a fictional auction game. Leagues are broad
@@ -594,10 +715,12 @@ const countGroup=(g,side,group)=>g.squads[side].filter(id=>groupOf(PLAYERS[id])=
 const shuffle=arr=>{const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
 const side=()=>mode==='ai'?0:room?.hostUid===uid?0:1;
 const names=()=>mode==='ai'?['You','AI']:[room?.hostName||'Host',room?.guestName||'Guest'];
-function showPage(id){document.querySelectorAll('.wrap>section').forEach(s=>s.classList.add('hidden'));$(id).classList.remove('hidden')}
+function showPage(id){document.querySelectorAll('.wrap>section').forEach(s=>s.classList.add('hidden'));$(id).classList.remove('hidden');document.body.dataset.page=id;refreshV7Hud()}
 window.showPage=showPage;
+function refreshV7Hud(){const n=myName();if($('v7HudName'))$('v7HudName').textContent=(n||'GUEST').toUpperCase();const raw=localStorage.getItem('bidxi_packs_v1');let pts=0;try{pts=Math.max(0,Number(JSON.parse(raw||'{}').points)||0)}catch(e){}if($('v7HudPoints'))$('v7HudPoints').textContent=pts.toLocaleString('en-US');document.querySelectorAll('.v7-topnav button').forEach(b=>b.classList.toggle('is-active',b.dataset.to===document.body.dataset.page));}
+window.refreshV7Hud=refreshV7Hud;
 function requireName(){if(myName())return true;alert('Please save your name first.');showPage('home');return false}
-window.saveName=()=>{const n=$('name').value.trim();if(n.length<2||n.length>20){alert('Name must be 2–20 characters.');return}localStorage.setItem('bidxi_name',n);$('name').value=n;if(inviteParam&&uid)joinRoom(inviteParam);else alert('Name saved!')};
+window.saveName=()=>{const n=$('name').value.trim();if(n.length<2||n.length>20){alert('Name must be 2–20 characters.');return}localStorage.setItem('bidxi_name',n);$('name').value=n;refreshV7Hud();if(inviteParam&&uid)joinRoom(inviteParam);else {const box=$('connection');if(box)box.textContent='✓ PLAYER PROFILE SAVED • '+n;}};
 window.openMenu=()=>{if(requireName())showPage('menu')};
 window.openSettings=m=>{if(!requireName())return;mode=m;$('difficultyBox').classList.toggle('hidden',m!=='ai');showPage('settings')};
 const readSettings=()=>({budget:+$('budget').value,bidTimer:+$('timer').value,simulation:$('simulation').value,difficulty:$('difficulty').value});
@@ -1191,7 +1314,7 @@ function packClaim(g,kind,won){
  updatePackBalance();
  return {newlyClaimed:true,earned,points:save.points};
 }
-function updatePackBalance(){const s=packRead();if($('menuPoints'))$('menuPoints').textContent=packNumber(s.points)+' pts';if($('packBalance'))$('packBalance').textContent=packNumber(s.points);if($('buyBasic'))$('buyBasic').disabled=s.points<100||packBusy;if($('buyElite'))$('buyElite').disabled=s.points<500||packBusy}
+function updatePackBalance(){refreshV7Hud();const s=packRead();if($('menuPoints'))$('menuPoints').textContent=packNumber(s.points)+' pts';if($('packBalance'))$('packBalance').textContent=packNumber(s.points);if($('buyBasic'))$('buyBasic').disabled=s.points<100||packBusy;if($('buyElite'))$('buyElite').disabled=s.points<500||packBusy}
 window.openPacks=()=>{clearTimeout(packRevealTimer);packBusy=false;$('packStage').classList.add('hidden');$('packReveal').classList.add('hidden');$('packContinue').classList.add('hidden');showPage('packs');updatePackBalance();drawCollection()};
 window.closeReveal=()=>{clearTimeout(packRevealTimer);packBusy=false;$('packStage').classList.add('hidden');$('packReveal').classList.add('hidden');$('packContinue').classList.add('hidden');updatePackBalance();drawCollection()};
 function packTier(kind){const r=packRandom();if(kind==='elite')return r<.01?[88,99]:r<.10?[85,87]:[80,84];return r<.01?[85,99]:[0,84]}
@@ -1442,6 +1565,37 @@ $('name').value=myName();
 onAuthStateChanged(auth,user=>{uid=user?.uid||null;$('connection').textContent=uid?'Online services connected':'Offline or connecting';if(uid&&inviteParam&&myName()&&!roomId)joinRoom(inviteParam)});
 // Anonymous Auth retains the same Firebase user identity between refreshes.
 if(!auth.currentUser)signInAnonymously(auth).catch(e=>{$('connection').textContent='Online error: '+e.message;console.error(e)});
+
+// V7 visual layer: no external third-party photographs, logos, fonts or artwork.
+// Keep the 3D-inspired motion subtle, accessible and independent of Firebase.
+window.v7Navigate=dest=>{
+  const leavingSession=['lobby','game','match'].includes(document.body.dataset.page);
+  if(leavingSession){
+    if(!window.confirm('Leave your current game? Your live auction or match will be exited.'))return;
+    window.leaveGame();
+  }
+  if(dest==='menu')return window.openMenu();
+  if(dest==='packs')return window.openPacks();
+  if(dest==='club')return window.openClub();
+  if(dest==='market')return window.openMarket();
+};
+refreshV7Hud();
+const v7World=document.querySelector('.v7-stadium-container');
+if(v7World && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  let mouseX=0,mouseY=0,framePending=false;
+  document.addEventListener('pointermove',event=>{
+    if(document.body.dataset.page!=='home' && document.body.dataset.page!=='menu')return;
+    mouseX=(event.clientX/window.innerWidth-.5)*5;
+    mouseY=(event.clientY/window.innerHeight-.5)*3;
+    if(framePending)return;
+    framePending=true;
+    requestAnimationFrame(()=>{
+      v7World.style.setProperty('--v7parallaxX',mouseX+'px');
+      v7World.style.setProperty('--v7parallaxY',mouseY+'px');
+      framePending=false;
+    });
+  },{passive:true});
+}
 
 </script>
 </body>
